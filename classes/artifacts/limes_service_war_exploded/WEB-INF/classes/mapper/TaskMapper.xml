@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.safewind.dao.mapper.TaskMapper" >
+  <resultMap id="BaseResultMap" type="com.safewind.dao.entity.Task" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="task_con" property="task_con" jdbcType="VARCHAR" />
+    <result column="task_type" property="task_type" jdbcType="VARCHAR" />
+    <result column="task_theme" property="task_theme" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, task_con,task_type,task_theme,create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectSelective" resultMap="BaseResultMap"  parameterType="com.safewind.dao.entity.Task">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    <where>
+      <if test="name != null" >
+        name = #{name}
+      </if>
+      <if test="task_con != null" >
+        AND task_con = #{task_con}
+      </if>
+      <if test="task_type != null" >
+        AND task_type = #{task_type}
+      </if>
+      <if test="task_theme != null" >
+        AND task_theme = #{task_theme}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.safewind.dao.entity.Task" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task (name, task_con,task_type,task_theme,
+      create_time, update_time)
+    values (#{name,jdbcType=VARCHAR}, #{task_con,jdbcType=VARCHAR},#{task_type,jdbcType=VARCHAR}, #{task_theme,jdbcType=VARCHAR},
+      #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.safewind.dao.entity.Task" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="task_con != null" >
+        task_con,
+      </if>
+      <if test="task_type != null" >
+        task_type,
+      </if>
+      <if test="task_theme != null" >
+        task_theme,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="task_con != null" >
+        #{task_con,jdbcType=VARCHAR},
+      </if>
+      <if test="task_type != null" >
+        #{task_type,jdbcType=VARCHAR},
+      </if>
+      <if test="task_theme != null" >
+        #{task_theme,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.safewind.dao.entity.Task" >
+    update task
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="task_con != null" >
+        task_con = #{task_con,jdbcType=VARCHAR},
+      </if>
+      <if test="task_type != null" >
+        task_type = #{task_type,jdbcType=VARCHAR},
+      </if>
+      <if test="task_theme != null" >
+        task_theme = #{task_theme,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.safewind.dao.entity.Task" >
+    update task
+    set name = #{name,jdbcType=VARCHAR},
+      task_con = #{task_con,jdbcType=VARCHAR},
+      task_type = #{task_type,jdbcType=VARCHAR},
+       task_theme = #{task_theme,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
