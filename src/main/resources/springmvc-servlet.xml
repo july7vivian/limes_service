@@ -25,5 +25,4 @@
     <mvc:resources mapping="/img/**" location="/static/img/" />
     <mvc:resources mapping="/js/**" location="/static/js/" />
     <mvc:resources mapping="/fonts/**" location="/static/fonts/" />
-    <mvc:resources mapping="/resultpage/**" location="/resultpage/" />
 </beans>
