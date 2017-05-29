@@ -10,12 +10,22 @@ import org.apache.commons.fileupload.util.Streams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -65,26 +75,13 @@ public class IndexController {
     }
 
 
-    @RequestMapping(value = "/uploadLile")
-    public String uploadLile(HttpServletRequest request){
-        String ajaxUpdateResult = "";
-        try {
-            List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-            for (FileItem item : items) {
-                if (item.isFormField()) {
-                    ajaxUpdateResult += "Field " + item.getFieldName() +
-                            " with value: " + item.getString() + " is successfully read\n\r";
-                } else {
-                    String fileName = item.getName();
-                    InputStream content = item.getInputStream();
-                    // Do whatever with the content InputStream.
-                    System.out.println(Streams.asString(content));
-                    ajaxUpdateResult += "File " + fileName + " is successfully uploaded\n\r";
-                }
-            }
-        } catch (Exception e) {
-            logger.error("接收文件失败，e:{}", e);
-        }
-        return "/index";
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    public ModelAndView saveFile(HttpServletRequest request)
+    {
+        String fileName = configService.uploadFile(request);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("fileName", fileName);
+        mav.setViewName("uploadResult");
+        return mav;
     }
 }

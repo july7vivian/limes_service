@@ -15,6 +15,7 @@
   <!--[if lt IE 9]>
   <script type="text/javascript" src="/js/respond.min.js"></script>
   <![endif]-->
+
 </head>
 <body data-color="grey" class="flat">
 <div id="wrapper">
@@ -24,11 +25,11 @@
   <%@ include file="sidebar.html"%>
   <div id="content">
     <div id="content-header" class="mini">
-      <h1>上传文件</h1>
+      <h1>result for upload</h1>
     </div>
     <div id="breadcrumb">
       <a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-      <a href="#" class="current">上传文件</a>
+      <a href="#" class="current">result for upload</a>
     </div>
 
 
@@ -37,16 +38,14 @@
       <div class="row">
         <div class="col-xs-12">
 
-
-          <form class="form-horizontal" enctype="multipart/form-data" method="post" action="uploadFile">
-
             <div class="form-group">
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">结果</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="file" name="fieldName"/>
+                文件名，请保存 : ${fileName}
               </div>
             </div>
-            <button class="btn btn-dark-blue" style="float: right;" type="submit" id="insertData">上传</button>
-          </form>
+            <a class="btn btn-dark-blue" type="button" href="upload">继续上传</a>
+            <a class="btn btn-dark-blue" type="button" href="generateConfig" >下一步</a>
           <br/>
         </div>
       </div>
