@@ -25,11 +25,11 @@
   <%@ include file="sidebar.html"%>
   <div id="content">
     <div id="content-header" class="mini">
-      <h1>result for config</h1>
+      <h1>提交成功</h1>
     </div>
     <div id="breadcrumb">
       <a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-      <a href="#" class="current">result for config</a>
+      <a href="#" class="current">提交成功</a>
     </div>
 
 
@@ -43,8 +43,12 @@
               <div class="col-sm-3 col-md-9 col-lg-10">
                 job_id : ${jobId}
               </div>
+              <div class="col-sm-3 col-md-9 col-lg-10">
+                运行状态 : 已经提交成功，正等待运行，请耐心等候      <a class="btn btn-dark-blue" type="button">刷新</a>
+              </div>
             </div>
-            <button class="btn btn-dark-blue" type="button" >下一步</button>
+          <br/>
+            <a class="btn btn-dark-blue" type="button" style="float: right" disabled="disabled" >下载结果</a>
           <br/>
         </div>
       </div>

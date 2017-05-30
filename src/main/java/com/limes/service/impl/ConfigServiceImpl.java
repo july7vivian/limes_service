@@ -82,15 +82,9 @@ public class ConfigServiceImpl implements ConfigService {
         String content = config.toString();
         try {
 
-            file = new File("/Users/humeng/Downloads/outwork/LIMES_resouce/test.xml");
-            //fop = new FileOutputStream(file);
-
             // get the content in bytes
             byte[] contentInBytes = content.getBytes();
             jobId = HttpUtil.httpPostFile("http://localhost:8080/execute", null, "test.xml", contentInBytes, "text/xml", "2", "3");
-            //fop.write(contentInBytes);
-            //fop.flush();
-            //fop.close();
 
         } catch (Exception e) {
             logger.error("保存配置文件失败，e:{}", e);

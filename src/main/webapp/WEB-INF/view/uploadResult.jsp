@@ -25,11 +25,11 @@
   <%@ include file="sidebar.html"%>
   <div id="content">
     <div id="content-header" class="mini">
-      <h1>result for upload</h1>
+      <h1>上传成功</h1>
     </div>
     <div id="breadcrumb">
       <a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-      <a href="#" class="current">result for upload</a>
+      <a href="#" class="current">上传成功</a>
     </div>
 
 

@@ -38,16 +38,19 @@
         <div class="col-xs-12">
 
 
-          <form class="form-horizontal" id="insertForm" action="submitConfig">
+          <form class="form-horizontal" id="insertForm" action="unused">
 
             <div class="form-group">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left"><button class="btn btn-dark-blue" type="button">+keyPoint</button></label>
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">keyPoint</label>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">job_id</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="PREFIX_NAMESPACE" />
+                <input type="text" class="form-control input-sm"/>
+              </div>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">result_tpye</label>
+              <div class="col-sm-3 col-md-9 col-lg-10">
+                <input type="text" class="form-control input-sm"/>
               </div>
             </div>
-            <button class="btn btn-dark-blue" style="float: right;" type="submit" id="insertData">查询</button>
+            <button class="btn btn-dark-blue" style="float: right;" type="submit" id="insertData">下载</button>
           </form>
           <br/>
         </div>
