@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="limes_service" />
+        <module name="windsays" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="limes_service" target="1.6" />
+      <module name="windsays" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
