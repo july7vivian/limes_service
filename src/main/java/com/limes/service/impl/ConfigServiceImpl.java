@@ -24,7 +24,7 @@ import java.util.Properties;
 import java.util.UUID;
 
 /**
- * Created by humeng on 2017/5/27.
+ * Created by dluo on 2017/5/27.
  */
 
 @Service("configService")
@@ -44,8 +44,9 @@ public class ConfigServiceImpl implements ConfigService {
 
     public String uploadFile(HttpServletRequest request){
         CommonsMultipartResolver mutilpartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-        //request如果是Multipart类型、
+        //request如果是Multipart类型
         String newfileName = "";
+        //检查form中是否有enctype="multipart/form-data"
         if (mutilpartResolver.isMultipart(request)) {
             //强转成 MultipartHttpServletRequest
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
@@ -59,8 +60,9 @@ public class ConfigServiceImpl implements ConfigService {
                     String[] fileNameArr = fileName.split("[.]");
                     newfileName = UUID.randomUUID().toString() + "." + fileNameArr[fileNameArr.length - 1];
                     String path = properties.getProperty("UploadPath") + newfileName;
+                    System.out.println("Path: "+path);
                     File localFile = new File(path);
-                    //将上传文件写入到指定文件出、核心！
+                    //将上传文件写入到指定文件处、核心！
                     try {
                         fileDetail.transferTo(localFile);
                     } catch (IOException e) {

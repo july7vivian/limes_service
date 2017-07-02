@@ -21,7 +21,7 @@
 <div id="wrapper">
 
   <%@ include file="header.html"%>
-  <%@ include file="switcher.html"%>
+  <%--<%@ include file="switcher.html"%>--%>
   <%@ include file="sidebar.html"%>
   <div id="content">
     <div id="content-header" class="mini">

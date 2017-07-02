@@ -1,17 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div id="sidebar">
-    <div id="search">
-        <input type="text" placeholder="Search here..."/><button type="submit" class="tip-right" title="Search"><i class="fa fa-search"></i></button>
-    </div>
+<!--<div id="sidebar" style="width:205px;height: 500px;overflow:scroll;">-->
+<div id="sidebar" style="overflow:scroll;">
+<!--<div id="sidebar">-->
+    <!--unicorn.css 的 622行附近有设置sidebar 的width和height值-->
+    <!--<div id="search">-->
+        <!--<input type="text" placeholder="Search here..."/><button type="submit" class="tip-right" title="Search"><i class="fa fa-search"></i></button>-->
+    <!--</div>-->
     <ul>
-        <li class="active"><a href="/"><i class="fa fa-home"></i> <span>主页</span></a></li>
-        <li class="submenu"><a href="/"><i class="fa fa-home"></i> <span>使用指南</span></a></li>
-        <li class="submenu">
-            <a href="#"><i class="fa fa-flask"></i> <span>limes</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <!--<li class="active_"><a href="/"><i class="fa fa-home"></i> <span>主页</span></a></li>-->
+        <!--<li class="active_"><a href="tutorial"><i class="fa fa-flask"></i> <span>使用指南</span></a></li>-->
+
+        <li><a href="/"><i class="fa fa-home"></i> <span>主页</span></a></li>
+        <!--<li><a href="tutorial"><i class="fa fa-flask"></i> <span>使用指南</span></a></li>-->
+
+        <li class="submenu tutorial">
+            <a href="tutorial"><i class="fa fa-flask"></i> <span>使用指南</span> <i class="arrow fa fa-chevron-right"></i></a>
             <ul>
-                <li><a href="upload">文件上传</a></li>
-                <li><a href="generateConfig">生成config</a></li>
-                <li><a href="download">文件下载</a></li>
+                <li><a href="/tutorial/intro">简介</a></li>
+                <li><a href="/tutorial/config">配置文件</a></li>
+                <li><a href="/tutorial/meta">&nbsp;&nbsp;&nbsp;&nbsp;Metadata</a></li>
+                <li><a href="/tutorial/prefix">&nbsp;&nbsp;&nbsp;&nbsp;Prefixes</a></li>
+                <li><a href="/tutorial/source">&nbsp;&nbsp;&nbsp;&nbsp;Data Sources</a></li>
+                <li><a href="/tutorial/metric">&nbsp;&nbsp;&nbsp;&nbsp;Metric</a></li>
+                <li><a href="/tutorial/metric/operation">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Metric Operation</a></li>
+                <li><a href="/tutorial/metric/bool">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Boolean Operation</a></li>
+                <li><a href="/tutorial/metric/measure">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Measures</a></li>
+                <li><a href="/tutorial/machine_learning">&nbsp;&nbsp;&nbsp;&nbsp;Machine Learning</a></li>
+                <li><a href="/tutorial/accept">&nbsp;&nbsp;&nbsp;&nbsp;Acceptance Condition</a></li>
+                <li><a href="/tutorial/review">&nbsp;&nbsp;&nbsp;&nbsp;Review Condition</a></li>
+                <li><a href="/tutorial/example">&nbsp;&nbsp;&nbsp;&nbsp;Examples</a></li>
+
+            </ul>
+        </li>
+
+
+
+
+        <li class="submenu usage">
+            <a href="#"><i class="fa fa-flask"></i> <span>Limes</span> <i class="arrow fa fa-chevron-right"></i></a>
+            <ul>
+                <li><a href="/upload">联系邮箱</a></li>
+                <li><a href="/generateConfig">参数配置</a></li>
+                <li><a href="/download">文件下载</a></li>
             </ul>
         </li>
         <li class="submenu">

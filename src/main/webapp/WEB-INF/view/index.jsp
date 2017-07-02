@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>limes 平台</title>
+  <title>Limes 平台</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
@@ -18,7 +18,7 @@
 <div id="wrapper">
 
   <%@ include file="header.html"%>
-  <%@ include file="switcher.html"%>
+  <%--<%@ include file="switcher.html"%>--%>
   <%@ include file="sidebar.html"%>
   <div id="content">
     <div id="content-header" class="mini">

@@ -6,7 +6,7 @@ import com.limes.dao.entity.Config;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by humeng on 2017/5/26.
+ * Created by dluo on 2017/5/26.
  */
 public interface ConfigService {
 
