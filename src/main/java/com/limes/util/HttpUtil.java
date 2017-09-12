@@ -169,10 +169,12 @@ public class HttpUtil {
                     strBuf.append(inputValue);
                 }
                 out.write(strBuf.toString().getBytes());
+                System.out.println("branch 1");
             }
             // file
             if (contentType == null || "".equals(contentType)) {
                 contentType = "application/octet-stream";
+                System.out.println("branch 2");
             }
             StringBuffer strBuf = new StringBuffer();
             strBuf.append("\r\n").append("--").append(BOUNDARY)

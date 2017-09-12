@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.limes.dao.mapper.RoleMapper">
+
+
+    <resultMap id="role" type="com.limes.dao.entity.ROLE">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getRoleName" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT role_name
+        FROM role
+        WHERE id = #{id}
+    </select>
+
+</mapper>

@@ -4,6 +4,7 @@ package com.limes.controller;
 import com.limes.dao.entity.*;
 import com.limes.service.ConfigService;
 import com.limes.service.EmailService;
+import com.limes.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.httpclient.HttpClient;
+import  com.sun.net.httpserver.HttpExchange;
+
 
 
 @Controller
@@ -23,6 +27,9 @@ public class IndexController {
 
     @Resource
     private EmailService emailService;
+
+    @Resource
+    private RoleService roleService;
 
     @RequestMapping(value = "/")
     public String index(HttpServletRequest request){
@@ -54,12 +61,15 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/submitConfig")
-    public ModelAndView submitConfig(Config config){
+    public ModelAndView submitConfig(Config config){  //data bind
 //        System.out.println(config);
         String jobId = configService.getIDFromConfig(config);
         ModelAndView mav = new ModelAndView();
         mav.addObject("jobId", jobId);
         mav.setViewName("resultone");
+
+
+
         return mav;
     }
 
@@ -183,6 +193,19 @@ public class IndexController {
         emailService.sentEmail(request);
         ModelAndView mav = new ModelAndView();
         mav.setViewName("tutorial/tutorial_example");
+        return mav;
+
+    }
+
+    @RequestMapping(value = "/role")
+    public ModelAndView getRole(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        int Id = Integer.parseInt(id);
+        String name = roleService.getRoleName(Id);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("name", name);
+        mav.setViewName("hello");
+
         return mav;
 
     }

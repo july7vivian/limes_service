@@ -292,14 +292,14 @@ $(function(){
     // });
 
 
-    $('#insertForm').delegate(".current-prefix", "click", function() {
-        var prefix = '<div class="form-group"><label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">PREFIX <button id="AddPrefix" class="btn btn-dark-blue" style="float: right;" type="button">+PREFIX</button></label><label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label><div class="col-sm-3 col-md-9 col-lg-10"><input type="text" class="form-control input-sm" name="PREFIXs[0].NAMESPACE" placeholder="http://geovocab.org/geometry#" /></div><label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label><div class="col-sm-3 col-md-9 col-lg-10"><input type="text" class="form-control input-sm" name="PREFIXs[0].LABEL" placeholder="geom"/></div></div>';
-        var form = document.getElementById("insertForm");
-        form.insertAdjacentHTML("afterBegin",prefix);
-        // var current = $(this).children(".current-prefix");
-        // current.removeClass('current-prefix');
-        $(this).removeClass('current-prefix');
-    });
+    // $('#insertForm').delegate(".current-prefix", "click", function() {
+    //     var prefix = '<div class="form-group"><label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">PREFIX <button id="AddPrefix" class="btn btn-dark-blue" style="float: right;" type="button">+PREFIX</button></label><label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label><div class="col-sm-3 col-md-9 col-lg-10"><input type="text" class="form-control input-sm" name="PREFIXs[0].NAMESPACE" placeholder="http://geovocab.org/geometry#" /></div><label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label><div class="col-sm-3 col-md-9 col-lg-10"><input type="text" class="form-control input-sm" name="PREFIXs[0].LABEL" placeholder="geom"/></div></div>';
+    //     var form = document.getElementById("insertForm");
+    //     form.insertAdjacentHTML("afterBegin",prefix);
+    //     // var current = $(this).children(".current-prefix");
+    //     // current.removeClass('current-prefix');
+    //     $(this).removeClass('current-prefix');
+    // });
 
     // $("#AddPrefix1").live("click", function(){
     //     alert("hello");

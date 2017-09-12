@@ -15,6 +15,53 @@
   <!--[if lt IE 9]>
   <script type="text/javascript" src="/js/respond.min.js"></script>
   <![endif]-->
+
+
+
+  <script type="text/javascript">
+    var count=1;
+    function addItem() {
+
+        var prefix = '<div class="form-group" id = "prefix_'+count+'">' +
+
+            '<label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>' +
+            '<div class="col-sm-3 col-md-9 col-lg-10">' +
+            '<input type="text" class="form-control input-sm" name="PREFIXs['+count+'].NAMESPACE" placeholder="http://geovocab.org/geometry#" />' +
+            '</div>' +
+            '<label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label>' +
+            '<div class="col-sm-3 col-md-9 col-lg-10"><input type="text" class="form-control input-sm" name="PREFIXs['+count+'].LABEL" placeholder="geom"/>' +
+            '</div>' +
+            '<label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">' +
+            '<button id="deletePrefix'+count+'" class="btn btn-dark-red" style="float: right;" type="button" onclick="deleteItem()">DELETE</button>' +
+            '</label>'+
+            '</div>';
+
+
+//        var form = document.getElementById("insertForm");
+        var form = document.getElementById("firstPrefix");
+//        form.insertAdjacentHTML("afterBegin",prefix);
+        form.insertAdjacentHTML("afterEnd",prefix);
+//        $(this).removeClass('current-prefix');
+        count++;
+    }
+
+    function deleteItem() {
+
+        var id = event.target.id;
+        var len = "deletePrefix".length;
+        var index = id.substring(len, id.length);
+        var prefix = "prefix_"+index;
+//        alert(prefix);
+        var parent = document.getElementById("insertForm");
+        var child = document.getElementById(prefix);
+        parent.removeChild(child);
+
+    }
+
+  </script>
+
+
+
 </head>
 <body data-color="grey" class="flat">
 <div id="wrapper">
@@ -40,8 +87,8 @@
 
           <form class="form-horizontal" id="insertForm" action="submitConfig">
 
-            <div class="form-group current-prefix">
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">PREFIX <button id="AddPrefix" class="btn btn-dark-blue" style="float: right;" type="button">+PREFIX</button></label>
+            <div class="form-group current-prefix" id="firstPrefix">
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">PREFIX <button id="addPrefix" class="btn btn-dark-blue" style="float: right;" type="button"; onclick="addItem()">+PREFIX</button></label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
                 <input type="text" class="form-control input-sm" name="PREFIXs[0].NAMESPACE" placeholder="http://geovocab.org/geometry#" />
@@ -51,31 +98,6 @@
                 <input type="text" class="form-control input-sm" name="PREFIXs[0].LABEL" placeholder="geom"/>
               </div>
             </div>
-
-
-
-            <%--<div class="form-group">--%>
-              <%--<label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">PREFIX</label>--%>
-              <%--<label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>--%>
-              <%--<div class="col-sm-3 col-md-9 col-lg-10">--%>
-                <%--<input type="text" class="form-control input-sm" name="PREFIXs[1].NAMESPACE" placeholder="http://www.opengis.net/ont/geosparql#" />--%>
-              <%--</div>--%>
-              <%--<label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label>--%>
-              <%--<div class="col-sm-3 col-md-9 col-lg-10">--%>
-                <%--<input type="text" class="form-control input-sm" name="PREFIXs[1].LABEL" placeholder="geos" />--%>
-              <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="form-group">--%>
-              <%--<label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">PREFIX</label>--%>
-              <%--<label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>--%>
-              <%--<div class="col-sm-3 col-md-9 col-lg-10">--%>
-                <%--<input type="text" class="form-control input-sm" name="PREFIXs[2].NAMESPACE" placeholder="http://linkedgeodata.org/ontology/" />--%>
-              <%--</div>--%>
-              <%--<label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label>--%>
-              <%--<div class="col-sm-3 col-md-9 col-lg-10">--%>
-                <%--<input type="text" class="form-control input-sm" name="PREFIXs[2].LABEL" placeholder="lgdo" />--%>
-              <%--</div>--%>
-            <%--</div>--%>
 
 
 
