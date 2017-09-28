@@ -117,7 +117,7 @@
     </div>
     <%@ include file="../footer.html"%>
 
-
+</div>
     <script src="/js/gitbook/gitbook.js"></script>
     <script src="/js/gitbook/theme.js"></script>
     <script src="/js/gitbook/gitbook-plugin-search/search-engine.js"></script>

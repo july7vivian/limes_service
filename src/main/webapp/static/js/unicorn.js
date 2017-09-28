@@ -5,6 +5,7 @@
 **/
 $(function(){
 
+	//页面加载的时候，就调整sidebar的高度，使之和右边的保持一致
     // var h  = $(window).height() - 39;
     var h  = $(document).height() - 39;
     // alert($(window).height());

@@ -2,6 +2,7 @@ package com.limes.service.impl;
 
 import com.limes.dao.entity.*;
 import com.limes.service.ConfigService;
+import com.limes.service.FtpAccountService;
 import com.limes.util.ExceptionDealUtil;
 import com.limes.util.HttpUtil;
 import org.slf4j.Logger;
@@ -42,6 +43,8 @@ public class ConfigServiceImpl implements ConfigService {
         }
     }
 
+    @javax.annotation.Resource
+    private FtpAccountService ftpAccountService;
     public String uploadFile(HttpServletRequest request){
         CommonsMultipartResolver mutilpartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         //request如果是Multipart类型
@@ -161,6 +164,14 @@ public class ConfigServiceImpl implements ConfigService {
         FileOutputStream fop = null;
         File file;
         String content = config.toString();
+        SOURCE source = config.getSource();
+        TARGET target = config.getTarget();
+        String s_endpoint = source.getENDPOINT();
+//        String t_endpont = target.getENDPOINT();
+
+        String userName = s_endpoint.trim().split("/")[0].trim();
+        String Email = ftpAccountService.getEmail(userName);
+
         System.out.println(content);
         try {
 

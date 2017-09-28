@@ -1,6 +1,8 @@
 package com.limes.service.impl;
 
 import com.limes.service.EmailService;
+import com.limes.service.FtpAccountService;
+import com.limes.service.RoleService;
 import com.limes.util.ExceptionDealUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +17,10 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.*;
+import java.sql.Timestamp;
 import java.util.*;
+import java.util.regex.*;
+
 
 /**
  * Created by dluo on 17/6/24.
@@ -37,12 +42,14 @@ public class EmailServiceImpl implements EmailService{
         }
     }
 
+    @javax.annotation.Resource
+    private FtpAccountService ftpAccountService;
+
     public void sentEmail(HttpServletRequest request){
 
 //        String param = request.getQueryString();
 //        Map map = request.getParameterMap();
         String email = request.getParameter("email");
-//        System.out.println("email: "+email);
 
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -60,27 +67,42 @@ public class EmailServiceImpl implements EmailService{
         String[] msg = createFTP(email);
 
 
-        smm.setSubject("Hello world");
-        smm.setText("Hello world ! Limes service! Your FTP account is upload1, password is 123456\n This account will expire in three days, please finish your linkage as soon.\n Thanks!");
+        smm.setSubject("Limes FTP Account");
+        smm.setText("Welcome to  Limes service! Your FTP account is "+msg[0]+ ", password is "+msg[1]+"\nThis account will expire at "+msg[2]+", please finish your linkage as soon.\nThanks!");
         mailSender.send(smm);
-//        System.out.print("hello world !");
     }
 
 
     private String[] createFTP(String email){
-        String[] result = new String[2];
+        //允许英文字母、数字、下划线、英文句号、以及中划线组成
+        Pattern p = Pattern.compile("([a-zA-Z0-9_-]+)@([a-zA-Z0-9_-]+)(\\.[a-zA-Z0-9_-]+)+$");
+        Matcher m = p.matcher(email);
+        String username="", domain="";
+        String[] result = new String[3];
+        if (m.matches()){
+            username = m.group(1);
+            domain = m.group(2);
+        }
+        String account = username+domain;
+        String password = createPassword(6);
 
-
-        result[0] = "ftp1";
-//        result[1]=createPassword();
-        result[1] = "123456";
-
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, 3); //现在时间的3天后
+        cal.set(Calendar.HOUR_OF_DAY, 8);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        Date date=cal.getTime();
+        Timestamp expire = new Timestamp(date.getTime());
+        ftpAccountService.insertAccount(account, password, expire, email);
+        result[0] = account;
+        result[1] = password;
+        result[2] = expire.toString();
         return result;
     }
 
 
-    private String createPassword(){
-        int length = 6;
+    private String createPassword(int length){
         String base = "abcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
         StringBuffer sb = new StringBuffer();
@@ -110,11 +132,9 @@ public class EmailServiceImpl implements EmailService{
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        System.out.println("hello");
         for (String line : processList) {
             System.out.println(line);
         }
-//        System.out.println("world");
     }
 
 
