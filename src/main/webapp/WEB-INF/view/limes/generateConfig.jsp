@@ -214,7 +214,10 @@
                 <input type="text" class="form-control input-sm" name="OUTPUT" placeholder="TAB" />
               </div>
             </div>
-            <button class="btn btn-dark-blue" style="float: right;" type="submit" id="insertData">提交</button>
+            <%--<div >--%>
+            <%--<button class="btn btn-dark-blue" style="float: right;" type="submit" id="insertData">提交</button>--%>
+            <button class="btn btn-dark-blue" style="margin-left: 50%" type="submit" id="insertData">提交</button>
+            <%--</div>--%>
           </form>
           <%--<br/>--%>
         </div>

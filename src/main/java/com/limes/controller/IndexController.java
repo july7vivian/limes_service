@@ -4,6 +4,7 @@ package com.limes.controller;
 import com.limes.dao.entity.*;
 import com.limes.service.ConfigService;
 import com.limes.service.EmailService;
+import com.limes.service.JobService;
 import com.limes.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +31,10 @@ public class IndexController {
 
     @Resource
     private RoleService roleService;
+
+
+    @Resource
+    private JobService jobService;
 
     @RequestMapping(value = "/")
     public String index(HttpServletRequest request){
@@ -83,6 +88,22 @@ public class IndexController {
 //        mav.setViewName("uploadResult");
 //        return mav;
 //    }
+
+
+
+    @RequestMapping(value = "/getStatus")
+    public ModelAndView queryStatus(HttpServletRequest request){  //data bind
+//        System.out.println(config);
+        String jobId = request.getParameter("id");
+        String status = jobService.getStatus(jobId);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("jobId", jobId);
+        mav.addObject("status", status);
+        mav.setViewName("resulttwo");
+
+        return mav;
+    }
+
 
 
 
@@ -192,7 +213,7 @@ public class IndexController {
     {
         emailService.sentEmail(request);
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("tutorial/tutorial_example");
+        mav.setViewName("resultzero");
         return mav;
 
     }

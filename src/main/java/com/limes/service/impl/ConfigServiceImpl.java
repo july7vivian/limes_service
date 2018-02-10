@@ -3,6 +3,7 @@ package com.limes.service.impl;
 import com.limes.dao.entity.*;
 import com.limes.service.ConfigService;
 import com.limes.service.FtpAccountService;
+import com.limes.service.JobService;
 import com.limes.util.ExceptionDealUtil;
 import com.limes.util.HttpUtil;
 import org.slf4j.Logger;
@@ -20,9 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by dluo on 2017/5/27.
@@ -45,6 +44,10 @@ public class ConfigServiceImpl implements ConfigService {
 
     @javax.annotation.Resource
     private FtpAccountService ftpAccountService;
+    @javax.annotation.Resource
+    private JobService jobService;
+
+
     public String uploadFile(HttpServletRequest request){
         CommonsMultipartResolver mutilpartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         //request如果是Multipart类型
@@ -170,15 +173,18 @@ public class ConfigServiceImpl implements ConfigService {
 //        String t_endpont = target.getENDPOINT();
 
         String userName = s_endpoint.trim().split("/")[0].trim();
-        String Email = ftpAccountService.getEmail(userName);
+        String email = ftpAccountService.getEmail(userName);
 
         System.out.println(content);
         try {
 
             // get the content in bytes
-            byte[] contentInBytes = content.getBytes();
-//            byte[] contentInBytes = example.getBytes();
-            jobId = HttpUtil.httpPostFile("http://localhost:8080/execute", null, "test.xml", contentInBytes, "text/xml", "2", "3");
+//            byte[] contentInBytes = content.getBytes();
+            byte[] contentInBytes = example.getBytes();
+            Map<String, String> textMap = new HashMap<String, String>();
+            textMap.put("email", "21521243@zju.edu.cn");
+            jobId = HttpUtil.httpPostFile("http://localhost:8080/execute", textMap, "test.xml", contentInBytes, "text/xml", "2", "3");
+            jobService.insertData(jobId, email);
 
         } catch (Exception e) {
             logger.error("保存配置文件失败，e:{}", e);

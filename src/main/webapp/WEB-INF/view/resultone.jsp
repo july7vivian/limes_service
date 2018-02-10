@@ -38,18 +38,19 @@
       <div class="row">
         <div class="col-xs-12">
 
-            <div class="form-group">
+            <%--<div class="form-group">--%>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">结果</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
                 job_id : ${jobId}
               </div>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                运行状态 : 已经提交成功，正等待运行，请耐心等候      <a class="btn btn-dark-blue" type="button">刷新</a>
+                运行状态 : 已经提交成功，正等待运行，请耐心等候
+                <%--<a class="btn btn-dark-blue" type="button">刷新</a>--%>
               </div>
-            </div>
-          <br/>
-            <a class="btn btn-dark-blue" type="button" style="float: right" disabled="disabled" >下载结果</a>
-          <br/>
+            <%--</div>--%>
+          <%--<br/>--%>
+            <%--<a class="btn btn-dark-blue" type="button" style="float: right" disabled="disabled" >下载结果</a>--%>
+          <%--<br/>--%>
         </div>
       </div>
     </div>

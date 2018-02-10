@@ -7,5 +7,6 @@ import com.limes.dao.entity.JOB;
  */
 public interface JobService {
 
-    void insertData(JOB job);
+    void insertData(String jobId, String email);
+    String getStatus(String jobId);
 }

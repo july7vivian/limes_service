@@ -24,11 +24,11 @@
   <%@ include file="../sidebar.html"%>
   <div id="content">
     <div id="content-header" class="mini">
-      <h1>下载文件</h1>
+      <h1>状态查询</h1>
     </div>
     <div id="breadcrumb">
       <a href="#" title="Go to Home" class="tip-bottom"><i class="fa fa-home"></i> Home</a>
-      <a href="#" class="current">下载文件</a>
+      <a href="#" class="current">状态查询</a>
     </div>
 
 
@@ -38,19 +38,25 @@
         <div class="col-xs-12">
 
 
-          <form class="form-horizontal" id="insertForm" action="unused">
+          <form class="form-horizontal" id="queryStatus" action="getStatus">
 
-            <div class="form-group">
+            <%--<div class="form-group">--%>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">job_id</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm"/>
+                <input type="text" name="id" class="form-control input-sm"/>
               </div>
-              <label class="col-sm-3 col-md-3 col-lg-2 control-label">result_tpye</label>
-              <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm"/>
-              </div>
-            </div>
-            <button class="btn btn-dark-blue" style="float: right;" type="submit" id="insertData">下载</button>
+
+              <br>
+              <br>
+
+              <button class="btn btn-dark-blue" style="margin-left: 50%;" type="submit" id="query">查询</button>
+              <%--<label class="col-sm-3 col-md-3 col-lg-2 control-label">result_tpye</label>--%>
+              <%--<div class="col-sm-3 col-md-9 col-lg-10">--%>
+                <%--<input type="text" class="form-control input-sm"/>--%>
+              <%--</div>--%>
+
+            <%--</div>--%>
+
           </form>
           <br/>
         </div>
