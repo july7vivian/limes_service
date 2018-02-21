@@ -10,6 +10,7 @@ public class TARGET {
     private String PAGESIZE;
     private String RESTRICTION;
     private String PROPERTY;
+    private String TYPE;
 
     public String getID() {
         return ID;
@@ -59,6 +60,14 @@ public class TARGET {
         this.PROPERTY = PROPERTY;
     }
 
+    public String getTYPE() {
+        return TYPE;
+    }
+
+    public void setTYPE(String TYPE) {
+        this.TYPE = TYPE;
+    }
+
 
     @Override
     public String toString() {
@@ -69,6 +78,7 @@ public class TARGET {
         sb.append("<PAGESIZE>").append(PAGESIZE).append("</PAGESIZE>\n");
         sb.append("<RESTRICTION>").append(RESTRICTION).append("</RESTRICTION>\n");
         sb.append("<PROPERTY>").append(PROPERTY).append("</PROPERTY>\n");
+        sb.append("<TYPE>").append(TYPE).append("</TYPE>\n");
         sb.append("</TARGET>\n");
         return sb.toString();
     }

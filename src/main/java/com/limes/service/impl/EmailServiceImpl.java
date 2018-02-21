@@ -68,8 +68,9 @@ public class EmailServiceImpl implements EmailService{
 
 
         smm.setSubject("Limes FTP Account");
-        smm.setText("Welcome to  Limes service! Your FTP account is "+msg[0]+ ", password is "+msg[1]+"\nThis account will expire at "+msg[2]+", please finish your linkage as soon.\nThanks!");
-        mailSender.send(smm);
+//        smm.setText("Welcome to  Limes service! Your FTP account is "+msg[0]+ ", password is "+msg[1]+"\nThis account will expire at "+msg[2]+", please finish your linkage as soon.\nThanks!");
+        smm.setText("Welcome to  Limes service! Your FTP account is ftp1, password is 123456\nThis account will expire at "+msg[2]+", please finish your linkage as soon.\nThanks!");
+//        mailSender.send(smm);
     }
 
 

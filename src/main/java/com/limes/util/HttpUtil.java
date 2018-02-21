@@ -150,6 +150,7 @@ public class HttpUtil {
                     "Mozilla/5.0 (Windows; U; Windows NT 6.1; zh-CN; rv:1.9.2.6)");
             conn.setRequestProperty("Content-Type",
                     "multipart/form-data; boundary=" + BOUNDARY);
+            // OutputStream 用于向服务器发送数据
             OutputStream out = new DataOutputStream(conn.getOutputStream());
             // text
             if (textMap != null) {
@@ -168,14 +169,11 @@ public class HttpUtil {
                             + inputName + "\"\r\n\r\n");
                     strBuf.append(inputValue);
                 }
-                System.out.println("strBuf"+strBuf.toString());
                 out.write(strBuf.toString().getBytes());
-                System.out.println("branch 1");
             }
             // file
             if (contentType == null || "".equals(contentType)) {
                 contentType = "application/octet-stream";
-                System.out.println("branch 2");
             }
             StringBuffer strBuf = new StringBuffer();
             strBuf.append("\r\n").append("--").append(BOUNDARY)
@@ -194,10 +192,11 @@ public class HttpUtil {
             }
             in.close();
             byte[] endData = ("\r\n--" + BOUNDARY + "--\r\n").getBytes();
+
             out.write(endData);
             out.flush();
             out.close();
-            // 读取返回数据
+            // 读取返回数据  InputStreamReader用于从服务器接收数据
             strBuf = new StringBuffer();
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     conn.getInputStream()));

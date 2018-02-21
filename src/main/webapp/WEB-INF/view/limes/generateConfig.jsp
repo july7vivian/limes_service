@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Limes 平台</title>
+  <title>OpenKG Linkage</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -19,17 +19,18 @@
 
 
   <script type="text/javascript">
-    var count=1;
+//    var count=1;
+    var count=2;
     function addItem() {
 
         var prefix = '<div class="form-group" id = "prefix_'+count+'">' +
 
             '<label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>' +
             '<div class="col-sm-3 col-md-9 col-lg-10">' +
-            '<input type="text" class="form-control input-sm" name="PREFIXs['+count+'].NAMESPACE" placeholder="http://geovocab.org/geometry#" />' +
+            '<input type="text" class="form-control input-sm" name="PREFIXs['+count+'].NAMESPACE" placeholder="http://www.w3.org/2000/01/rdf-schema#" />' +
             '</div>' +
             '<label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label>' +
-            '<div class="col-sm-3 col-md-9 col-lg-10"><input type="text" class="form-control input-sm" name="PREFIXs['+count+'].LABEL" placeholder="geom"/>' +
+            '<div class="col-sm-3 col-md-9 col-lg-10"><input type="text" class="form-control input-sm" name="PREFIXs['+count+'].LABEL" placeholder="w3"/>' +
             '</div>' +
             '<label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">' +
             '<button id="deletePrefix'+count+'" class="btn btn-dark-red" style="float: right;" type="button" onclick="deleteItem()">DELETE</button>' +
@@ -85,17 +86,28 @@
         <div class="col-xs-12">
 
 
-          <form class="form-horizontal" id="insertForm" action="submitConfig">
+          <form class="form-horizontal" id="insertForm" action="submitConfig" method="post">
 
             <div class="form-group current-prefix" id="firstPrefix">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">PREFIX <button id="addPrefix" class="btn btn-dark-blue" style="float: right;" type="button"; onclick="addItem()">+PREFIX</button></label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="PREFIXs[0].NAMESPACE" placeholder="http://geovocab.org/geometry#" />
+                <input type="text" class="form-control input-sm" name="PREFIXs[0].NAMESPACE" value="http://www.w3.org/2000/01/rdf-schema#" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="PREFIXs[0].LABEL" placeholder="geom"/>
+                <input type="text" class="form-control input-sm" name="PREFIXs[0].LABEL" value="w3"/>
+              </div>
+            </div>
+
+            <div class="form-group current-prefix" id = "prefix_1">
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>
+              <div class="col-sm-3 col-md-9 col-lg-10">
+                <input type="text" class="form-control input-sm" name="PREFIXs[1].NAMESPACE" value="http://cndbpedia/ontology/" />
+              </div>
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label>
+              <div class="col-sm-3 col-md-9 col-lg-10">
+                <input type="text" class="form-control input-sm" name="PREFIXs[1].LABEL" value="cndbo"/>
               </div>
             </div>
 
@@ -105,113 +117,125 @@
               <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">SOURCE</label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">ID</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="source.ID" placeholder="linkedgeodata" />
+                <input type="text" class="form-control input-sm" name="source.ID" value="data1" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">ENDPOINT</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="source.ENDPOINT" placeholder="username/filename" />
+                <input type="text" class="form-control input-sm" name="source.ENDPOINT" value="/Users/dluo/Desktop/linkage_data/Expression/cndbpedia.nt" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">VAR</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="source.VAR" placeholder="?x" />
+                <input type="text" class="form-control input-sm" name="source.VAR" value="?x" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">PAGESIZE</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="source.PAGESIZE" placeholder="2000" />
+                <input type="text" class="form-control input-sm" name="source.PAGESIZE" value="-1" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">RESTRICTION</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="source.RESTRICTION" placeholder="?x a lgdo:RelayBox" />
+                <input type="text" class="form-control input-sm" name="source.RESTRICTION" value="?x cndbo:实体名称 ?z1" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">PROPERTY</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="source.PROPERTY" placeholder="geom:geometry/geos:asWKT RENAME polygon" />
+                <input type="text" class="form-control input-sm" name="source.PROPERTY" value="cndbo:实体名称 RENAME label" />
               </div>
+
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">TYPE</label>
+              <div class="col-sm-3 col-md-9 col-lg-10">
+                <input type="text" class="form-control input-sm" name="source.TYPE" value="NT" />
+              </div>
+
+
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">TARGET</label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">ID</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="target.ID" placeholder="linkedgeodata" />
+                <input type="text" class="form-control input-sm" name="target.ID" value="data2" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">ENDPOINT</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="target.ENDPOINT" placeholder="username/filename" />
+                <input type="text" class="form-control input-sm" name="target.ENDPOINT" value="/Users/dluo/Desktop/linkage_data/Expression/zhwiki.nt" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">VAR</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="target.VAR" placeholder="?y" />
+                <input type="text" class="form-control input-sm" name="target.VAR" value="?y" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">PAGESIZE</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="target.PAGESIZE" placeholder="2000" />
+                <input type="text" class="form-control input-sm" name="target.PAGESIZE" value="-1" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">RESTRICTION</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="target.RESTRICTION" placeholder="?y a lgdo:RelayBox" />
+                <input type="text" class="form-control input-sm" name="target.RESTRICTION" value="?y w3:label ?z2" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">PROPERTY</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="target.PROPERTY" placeholder="geom:geometry/geos:asWKT RENAME polygon" />
+                <input type="text" class="form-control input-sm" name="target.PROPERTY" value="w3:label AS nolang" />
+              </div>
+
+              <label class="col-sm-3 col-md-3 col-lg-2 control-label">TYPE</label>
+              <div class="col-sm-3 col-md-9 col-lg-10">
+                <input type="text" class="form-control input-sm" name="target.TYPE" value="NT" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">METRIC</label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label"></label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="METRIC" placeholder="geo_hausdorff(x.polygon, y.polygon)" />
+                <input type="text" class="form-control input-sm" name="METRIC" value="ExactMatch(x.label, y.w3:label) | 0.9" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">ACCEPTANCE</label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">THRESHOLD</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="acceptance.THRESHOLD" placeholder="0.9"  />
+                <input type="text" class="form-control input-sm" name="acceptance.THRESHOLD" value="1.0"  />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">FILE</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="acceptance.FILE" placeholder="lgd_relaybox_verynear.nt" />
+                <input type="text" class="form-control input-sm" name="acceptance.FILE" value="verynear.nt" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">RELATION</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="acceptance.RELATION" placeholder="lgdo:near" />
+                <input type="text" class="form-control input-sm" name="acceptance.RELATION" value="w3:sameAs" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">REVIEW</label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">THRESHOLD</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="review.THRESHOLD" placeholder="0.5" />
+                <input type="text" class="form-control input-sm" name="review.THRESHOLD" value="0.5" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">FILE</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="review.FILE" placeholder="lgd_relaybox_near.nt" />
+                <input type="text" class="form-control input-sm" name="review.FILE" value="near.nt" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">RELATION</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="review.RELATION" placeholder="lgdo:near" />
+                <input type="text" class="form-control input-sm" name="review.RELATION" value="w3:near" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">EXECUTION</label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">REWRITER</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="execution.REWRITER" placeholder="default" />
+                <input type="text" class="form-control input-sm" name="execution.REWRITER" value="default" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">PLANNER</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="execution.PLANNER" placeholder="default" />
+                <input type="text" class="form-control input-sm" name="execution.PLANNER" value="default" />
               </div>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label">ENGINE</label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="execution.ENGINE" placeholder="default" />
+                <input type="text" class="form-control input-sm" name="execution.ENGINE" value="default" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">OUTPUT</label>
               <label class="col-sm-3 col-md-3 col-lg-2 control-label"></label>
               <div class="col-sm-3 col-md-9 col-lg-10">
-                <input type="text" class="form-control input-sm" name="OUTPUT" placeholder="TAB" />
+                <input type="text" class="form-control input-sm" name="OUTPUT" value="TAB" />
               </div>
             </div>
             <%--<div >--%>

@@ -20,9 +20,9 @@
     <select id="insertAccount"  parameterType="com.limes.dao.entity.FTPACCOUNT">
         INSERT INTO
         ftp_account
-        (user_name, password, expire)
+        (user_name, password, email, expire)
         VALUES
-        (#{userName}, #{password}, #{expire})
+        (#{userName}, #{password}, #{Email},#{expire})
         ON  DUPLICATE KEY UPDATE
         password = VALUES (password), expire = VALUES (expire)
     </select>

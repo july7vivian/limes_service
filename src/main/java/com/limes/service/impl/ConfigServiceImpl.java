@@ -49,6 +49,7 @@ public class ConfigServiceImpl implements ConfigService {
 
 
     public String uploadFile(HttpServletRequest request){
+
         CommonsMultipartResolver mutilpartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         //request如果是Multipart类型
         String newfileName = "";
@@ -162,6 +163,55 @@ public class ConfigServiceImpl implements ConfigService {
                 "</LIMES>";
 
 
+        String example1 = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                "<!DOCTYPE LIMES SYSTEM \"limes.dtd\">\n" +
+                "<LIMES>\n" +
+                "<PREFIX>\n" +
+                "<NAMESPACE>http://www.w3.org/2000/01/rdf-schema#</NAMESPACE>\n" +
+                "<LABEL>w3</LABEL>\n" +
+                "</PREFIX>\n" +
+                "<PREFIX>\n" +
+                "<NAMESPACE>http://cndbpedia/ontology/</NAMESPACE>\n" +
+                "<LABEL>cndbo</LABEL>\n" +
+                "</PREFIX>\n"+
+                "<SOURCE>\n" +
+                "<ID>data1</ID>\n" +
+                "<ENDPOINT>/Users/dluo/Desktop/linkage_data/Expression/cndbpedia.nt</ENDPOINT>\n" +
+                "<VAR>?x</VAR>\n" +
+                "<PAGESIZE>-1</PAGESIZE>\n" +
+                "<RESTRICTION>?x cndbo:实体名称 ?z1</RESTRICTION>\n" +
+                "<PROPERTY>cndbo:实体名称 RENAME label</PROPERTY>\n" +
+                "<TYPE>NT</TYPE>\n"+
+                "</SOURCE>\n" +
+                "<TARGET>\n" +
+                "<ID>data2</ID>\n" +
+                "<ENDPOINT>/Users/dluo/Desktop/linkage_data/Expression/zhwiki.nt</ENDPOINT>\n" +
+                "<VAR>?y</VAR>\n" +
+                "<PAGESIZE>-1</PAGESIZE>\n" +
+                "<RESTRICTION>?y w3:label ?z2</RESTRICTION>\n" +
+                "<PROPERTY>w3:label AS nolang</PROPERTY>\n" +
+                "<TYPE>NT</TYPE>\n"+
+                "</TARGET>\n" +
+                "<METRIC>ExactMatch(x.label, y.w3:label) | 0.9</METRIC>\n" +
+                "<ACCEPTANCE>\n" +
+                "<THRESHOLD>1.0</THRESHOLD>\n" +
+                "<FILE>verynear.nt</FILE>\n" +
+                "<RELATION>w3:sameAs</RELATION>\n" +
+                "</ACCEPTANCE>\n" +
+                "<REVIEW>\n" +
+                "<THRESHOLD>0.9</THRESHOLD>\n" +
+                "<FILE>near.nt</FILE>\n" +
+                "<RELATION>w3:near</RELATION>\n" +
+                "</REVIEW>\n" +
+                "<EXECUTION>\n" +
+                "<REWRITER>default</REWRITER>\n" +
+                "<PLANNER>default</PLANNER>\n" +
+                "<ENGINE>default</ENGINE>\n" +
+                "</EXECUTION>\n" +
+                "<OUTPUT>TAB</OUTPUT>\n" +
+                "</LIMES>";
+
+
 
         String jobId = "";
         FileOutputStream fop = null;
@@ -171,19 +221,26 @@ public class ConfigServiceImpl implements ConfigService {
         TARGET target = config.getTarget();
         String s_endpoint = source.getENDPOINT();
 //        String t_endpont = target.getENDPOINT();
+        System.out.println(content);
+//        String userName = s_endpoint.trim().split("/")[0].trim();// linux系统
+//        String userName = s_endpoint.trim().split("/")[2].trim(); // mac系统
+        String userName = "ftp1"; // 默认
+        String resultFolder ="/Users/"+ userName + "/result/";// mac系统
 
-        String userName = s_endpoint.trim().split("/")[0].trim();
         String email = ftpAccountService.getEmail(userName);
 
-        System.out.println(content);
+
         try {
 
             // get the content in bytes
-//            byte[] contentInBytes = content.getBytes();
-            byte[] contentInBytes = example.getBytes();
+            byte[] contentInBytes = content.getBytes();
+//            byte[] contentInBytes = example.getBytes();
+//            byte[] contentInBytes = example1.getBytes();
             Map<String, String> textMap = new HashMap<String, String>();
-            textMap.put("email", "21521243@zju.edu.cn");
-            jobId = HttpUtil.httpPostFile("http://localhost:8080/execute", textMap, "test.xml", contentInBytes, "text/xml", "2", "3");
+            //邮箱地址从数据库中查询
+            textMap.put("email", email);
+            textMap.put("resultFolder", resultFolder);
+            jobId = HttpUtil.httpPostFile("http://localhost:8080/execute", textMap, "config.xml", contentInBytes, "text/xml", "2", "3");
             jobService.insertData(jobId, email);
 
         } catch (Exception e) {

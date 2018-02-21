@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.httpclient.HttpClient;
 import  com.sun.net.httpserver.HttpExchange;
 
+import java.net.URLDecoder;
 
 
 @Controller
@@ -50,6 +51,13 @@ public class IndexController {
         return mav;
     }
 
+    @RequestMapping(value = "/generateConfig2")
+    public ModelAndView generateConfig2(HttpServletRequest request){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("limes/generateConfig2");
+        return mav;
+    }
+
 
     @RequestMapping(value = "/upload")
     public ModelAndView upload(HttpServletRequest request){
@@ -67,7 +75,9 @@ public class IndexController {
 
     @RequestMapping(value = "/submitConfig")
     public ModelAndView submitConfig(Config config){  //data bind
-//        System.out.println(config);
+
+        System.out.println("config***");
+        System.out.println(config.toString());
         String jobId = configService.getIDFromConfig(config);
         ModelAndView mav = new ModelAndView();
         mav.addObject("jobId", jobId);
@@ -207,7 +217,7 @@ public class IndexController {
 
 
 
-
+//提交邮箱地址，发送账号信息
     @RequestMapping(value = "/uploadEmail")
     public ModelAndView uploadEmail(HttpServletRequest request)
     {
