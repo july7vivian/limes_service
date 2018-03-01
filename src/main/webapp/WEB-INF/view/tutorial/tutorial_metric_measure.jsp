@@ -66,10 +66,9 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="measure-packages">Measure Packages</h1>
-                                        <p>Measures are organized in packages, based on the type of resource they are designed to operate with.
-                                            Several measure packages ship with LIMES and it is easy to extend it with your own.</p>
-                                        <p>The current version of LIMES ships with the following measure packages included:</p>
+                                        <h1 id="measure-packages">Measure Packages  度量函数包</h1>
+                                        <p>平台提供多种度量函数，分别位于不同的工具包中。</p>
+                                        <p>主要包括以下几种：</p>
                                         <ul>
                                             <li>string</li>
                                             <li>vector space</li>
@@ -78,16 +77,14 @@
                                             <li>temporal</li>
                                             <li>resource set</li>
                                         </ul>
-                                        <p>More complex distance measures are being added continuously.</p>
-
 
                                     </section>
                                     <br>
                                     <br>
                                     <section class="normal markdown-section">
 
-                                        <h1 id="string-measures">String Measures</h1>
-                                        <p>The string measures package consists of the following measures: </p>
+                                        <h1 id="string-measures">String Measures 字符串度量函数</h1>
+                                        <p>字符串函数包包括以下函数：</p>
                                         <ul>
                                             <li><code>Cosine</code></li>
                                             <li><code>ExactMatch</code></li>
@@ -102,9 +99,9 @@
                                             <li><code>Soundex</code></li>
                                             <li><code>Trigram</code></li>
                                         </ul>
-                                        <p>Example of atomic LS that consists of the string measure  <code>Trigram</code> and a threshold <code>theta = 0.8</code>:</p>
+                                        <p>一个包含度量函数，阈值的表达式如下所示：</code>:</p>
                                         <p><code>trigram(x.label, y.title) | 0.8</code></p>
-                                        <p>where <code>label</code> and <code>title</code> are properties of the source and target KB reps., whose values are strings. </p>
+                                        <p>其中，<code>label</code>和<code>title</code> 分别为源数据集和目标数据集的属性，类型都为字符串。</p>
 
 
                                     </section>
@@ -112,15 +109,15 @@
                                     <br>
                                     <section class="normal markdown-section">
 
-                                        <h1 id="vector-space-measures">Vector Space Measures</h1>
-                                        <p>LIMES supports comparing numeric vectors by using the vector space measures package consisting of the following measures:</p>
+                                        <h1 id="vector-space-measures">Vector Space Measures 向量空间度量函数</h1>
+                                        <p>主要包括以下函数：</p>
                                         <ul>
-                                            <li><code>Euclidean</code> metric <ul>
+                                            <li><code>Euclidean</code> 相似度 <ul>
                                                 <li>e.g. <code>euclidean(a.wgs84:lat|wgs84:long,b.wgs84:lat|wgs84:long)</code></li>
                                             </ul>
                                             </li>
-                                            <li><code>Geo_Orthodromic</code> distance </li>
-                                            <li><code>Geo_Great_Elliptic</code> distance</li>
+                                            <li><code>Geo_Orthodromic</code> 距离 </li>
+                                            <li><code>Geo_Great_Elliptic</code> 距离</li>
                                         </ul>
 
 
@@ -129,8 +126,8 @@
                                     <br>
                                     <section class="normal markdown-section">
 
-                                        <h1 id="point-set-measures">Point-Set Measures</h1>
-                                        <p>The similarity between polygons can be measured by using the following point-set distances:</p>
+                                        <h1 id="point-set-measures">Point-Set Measures 点集度量函数</h1>
+                                        <p>主要包括以下函数：</p>
                                         <ul>
                                             <li><code>Geo_Centroid_Indexed_Hausdorff</code> </li>
                                             <li><code>Geo_Fast_Hausdorff</code> </li>
@@ -156,8 +153,8 @@
                                     <br>
                                     <section class="normal markdown-section">
 
-                                        <h1 id="topological-measures">Topological Measures</h1>
-                                        <p>The topological relations between spatial resources can be found by using the following relations:</p>
+                                        <h1 id="topological-measures">Topological Measures 地理空间度量函数</h1>
+                                        <p>主要包括以下函数：</p>
                                         <ul>
                                             <li><code>Top_Contains</code></li>
                                             <li><code>Top_Covered_By</code></li>
@@ -176,14 +173,14 @@
                                     <br>
                                     <section class="normal markdown-section">
 
-                                        <h1 id="temporal-measures">Temporal Measures</h1>
-                                        <p>The temporal relations between event resources can be found by using the following relations:</p>
+                                        <h1 id="temporal-measures">Temporal Measures  时序空间度量函数</h1>
+                                        <p>主要包括以下函数：</p>
                                         <ul>
-                                            <li><code>Tmp_Concurrent</code>: given a source and a target KB, <code>Tmp_Concurrent</code> links the source and the target events that have the same begin date and were produced by the same machine. For example: Tmp_Concurrent(x.beginDate1|machine1,y.beginDate2|machine2)|1.0 </li>
-                                            <li><code>Tmp_Predecessor</code>: given a source and a target KB, <code>Tmp_Predecessor</code> links the source events to the set of target events that happen exactly before them. For example: Tmp_Predecessor(x.beginDate1,y.beginDate2)|1.0. If the <code>Tmp_Predecessor</code> measure is used in a complex LS, the <code>CANONICAL</code> planner should be used. </li>
-                                            <li><code>Tmp_Successor</code>: given a source and a target KB, <code>Tmp_Successor</code> links the source events to the set of target events that happen exactly after them. For example: Tmp_Successor(x.beginDate1,y.beginDate2)|1.0. If the <code>Tmp_Successor</code> measure is used in a complex LS, the <code>CANONICAL</code> planner should be used. </li>
+                                            <li><code>Tmp_Concurrent</code>: 源数据集和目标数据集中具有相同开始时间，并由同一machine产生的事件。 例如，Tmp_Concurrent(x.beginDate1|machine1,y.beginDate2|machine2)|1.0。</li>
+                                            <li><code>Tmp_Predecessor</code>: 目标数据集中的事件比源数据集中事件先发生。例如，Tmp_Predecessor(x.beginDate1,y.beginDate2)|1.0。
+                                            <li><code>Tmp_Successor</code>:目标数据集中的事件比源数据集中事件后发生。例如，Tmp_Successor(x.beginDate1,y.beginDate2)|1.0。</li>
                                         </ul>
-                                        <p>Allen's temporal relations (<a href="https://en.wikipedia.org/wiki/Allen's_interval_algebra" target="_blank">https://en.wikipedia.org/wiki/Allen's_interval_algebra</a>):</p>
+                                        <p>Allen时序关系 (<a href="https://en.wikipedia.org/wiki/Allen's_interval_algebra" target="_blank">https://en.wikipedia.org/wiki/Allen's_interval_algebra</a>):</p>
                                         <ul>
                                             <li><code>Tmp_After</code></li>
                                             <li><code>Tmp_Before</code></li>
@@ -200,25 +197,25 @@
                                             <li><code>Tmp_Overlaps</code></li>
                                             <li><code>Tmp_Starts</code></li>
                                         </ul>
-                                        <p>Example of atomic LS that consists of the temporal measure  <code>Tmp_Finishes</code> and a threshold <code>theta = 1.0</code>:</p>
+                                        <p>一个包含时序空间度量函数<code>Tmp_Finishes</code>和阈值<code>theta = 1.0</code>的示例如下：</p>
                                         <p><code>Tmp_Finishes(x.beginDate1|endDate1, y.beginDate2|endDate2) | 0.8</code></p>
-                                        <p>where <code>beginDate1</code> and <code>beginDate2</code> are properties of the source and target KB reps. whose values indicate the begin of a temporal event instance and <code>endDate1</code> and <code>endDate2</code> are properties of the source and target KB reps. whose values indicate the end of a temporal event instance. Both begin and end properties for both source and target MUST be included in an atomic LS whose measure is temporal. Also, the acceptable values for all properties are in the format: <code>2015-04-22T11:29:51+02:00</code>.</p>
+                                        <p>其中，<code>beginDate1</code>和<code>beginDate2</code>表示事件的开始时间。<code>endDate1</code>和<code>endDate2</code>表示事件的结束时间。时间格式为：<code>2015-04-22T11:29:51+02:00</code>。</p>
 
 
                                     </section>
-                                    <br>
-                                    <br>
-                                    <section class="normal markdown-section">
+                                    <%--<br>--%>
+                                    <%--<br>--%>
+                                    <%--<section class="normal markdown-section">--%>
 
-                                        <h1 id="resource-set-measures">Resource-Set Measures</h1>
-                                        <p>To compare sets of resources (e.g. in rdf containers), use the following relations:</p>
-                                        <ul>
-                                            <li><code>Set_Jaccard</code></li>
-                                        </ul>
-                                        <p>Please note that rdf collections are not supported yet.</p>
+                                        <%--<h1 id="resource-set-measures">Resource-Set Measures</h1>--%>
+                                        <%--<p>To compare sets of resources (e.g. in rdf containers), use the following relations:</p>--%>
+                                        <%--<ul>--%>
+                                            <%--<li><code>Set_Jaccard</code></li>--%>
+                                        <%--</ul>--%>
+                                        <%--<p>Please note that rdf collections are not supported yet.</p>--%>
 
 
-                                    </section>
+                                    <%--</section>--%>
 
 
 

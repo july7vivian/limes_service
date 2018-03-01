@@ -20,7 +20,7 @@
 
     <script type="text/javascript">
         //    var count=1;
-        var count=2;
+        var count=3;
         function addItem() {
 
             var prefix = '<div class="form-group" id = "prefix_'+count+'">' +
@@ -85,8 +85,7 @@
             <div class="row">
                 <div class="col-xs-12">
 
-D
-                    <form class="form-horizontal" id="insertForm" action="submitConfig" method="post">
+                    <form class="form-horizontal" id="insertForm" action="submitConfig2" method="post">
 
                         <div class="form-group current-prefix" id="firstPrefix">
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">PREFIX <button id="addPrefix" class="btn btn-dark-blue" style="float: right;" type="button"; onclick="addItem()">+PREFIX</button></label>
@@ -103,11 +102,22 @@ D
                         <div class="form-group current-prefix" id = "prefix_1">
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="PREFIXs[1].NAMESPACE" value="http://cndbpedia/ontology/" />
+                                <input type="text" class="form-control input-sm" name="PREFIXs[1].NAMESPACE" value="http://pkubase/ontology/" />
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="PREFIXs[1].LABEL" value="cndbo"/>
+                                <input type="text" class="form-control input-sm" name="PREFIXs[1].LABEL" value="pkuo"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group current-prefix" id = "prefix_2">
+                            <label class="col-sm-3 col-md-3 col-lg-2 control-label">NAMESPACE</label>
+                            <div class="col-sm-3 col-md-9 col-lg-10">
+                                <input type="text" class="form-control input-sm" name="PREFIXs[2].NAMESPACE" value="http://www.belief-engine.org/baike_hudong/resource/" />
+                            </div>
+                            <label class="col-sm-3 col-md-3 col-lg-2 control-label">LABEL</label>
+                            <div class="col-sm-3 col-md-9 col-lg-10">
+                                <input type="text" class="form-control input-sm" name="PREFIXs[2].LABEL" value="beliefr"/>
                             </div>
                         </div>
 
@@ -121,7 +131,7 @@ D
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">ENDPOINT</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="source.ENDPOINT" value="/Users/dluo/Desktop/linkage_data/Expression/cndbpedia.nt" />
+                                <input type="text" class="form-control input-sm" name="source.ENDPOINT" value="/Users/ftp1/MLearning/interest_triple_actor_final_belief_label.nt" />
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">VAR</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
@@ -133,11 +143,11 @@ D
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">RESTRICTION</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="source.RESTRICTION" value="?x cndbo:实体名称 ?z1" />
+                                <input type="text" class="form-control input-sm" name="source.RESTRICTION" value="?x beliefr:label ?z1" />
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">PROPERTY</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="source.PROPERTY" value="cndbo:实体名称 RENAME label" />
+                                <input type="text" class="form-control input-sm" name="source.PROPERTY" value="beliefr:label RENAME label" />
                             </div>
 
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">TYPE</label>
@@ -155,7 +165,7 @@ D
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">ENDPOINT</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="target.ENDPOINT" value="/Users/dluo/Desktop/linkage_data/Expression/zhwiki.nt" />
+                                <input type="text" class="form-control input-sm" name="target.ENDPOINT" value="/Users/ftp1/MLearning/interest_triple_actor_final_pku_label.nt" />
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">VAR</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
@@ -167,11 +177,11 @@ D
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">RESTRICTION</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="target.RESTRICTION" value="?y w3:label ?z2" />
+                                <input type="text" class="form-control input-sm" name="target.RESTRICTION" value="?y pkuo:label ?z2" />
                             </div>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">PROPERTY</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="target.PROPERTY" value="w3:label AS nolang" />
+                                <input type="text" class="form-control input-sm" name="target.PROPERTY" value="pkuo:label RENAME label" />
                             </div>
 
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">TYPE</label>
@@ -179,13 +189,32 @@ D
                                 <input type="text" class="form-control input-sm" name="target.TYPE" value="NT" />
                             </div>
                         </div>
+
+
                         <div class="form-group">
-                            <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">METRIC</label>
-                            <label class="col-sm-3 col-md-3 col-lg-2 control-label"></label>
+                            <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">MLALGORITHM</label>
+                            <label class="col-sm-3 col-md-3 col-lg-2 control-label">NAME</label>
                             <div class="col-sm-3 col-md-9 col-lg-10">
-                                <input type="text" class="form-control input-sm" name="METRIC" value="ExactMatch(x.label, y.w3:label) | 0.9" />
+                                <input type="text" class="form-control input-sm" name="mlalgorithm.NAME" value="wombat simple"  />
                             </div>
+                            <label class="col-sm-3 col-md-3 col-lg-2 control-label">TYPE</label>
+                            <div class="col-sm-3 col-md-9 col-lg-10">
+                                <input type="text" class="form-control input-sm" name="mlalgorithm.TYPE" value="supervised batch" />
+                            </div>
+                            <label class="col-sm-3 col-md-3 col-lg-2 control-label">TRAINING</label>
+                            <div class="col-sm-3 col-md-9 col-lg-10">
+                                <input type="text" class="form-control input-sm" name="mlalgorithm.TRAINING" value="/Users/ftp1/MLearning/ml_train_data.nt" />
+                            </div>
+
+                            <%--<label class="col-sm-3 col-md-3 col-lg-2 control-label">PARAMETER</label>--%>
+                            <%--<div class="col-sm-3 col-md-9 col-lg-10">--%>
+                                <%--<input type="text" class="form-control input-sm" name="mlalgorithm.PARAMETERs[0].NAME" value="max execution time in minutes" />--%>
+                                <%--<input type="text" class="form-control input-sm" name="mlalgorithm.PARAMETERs[0].VALUE" value="60" />--%>
+                            <%--</div>--%>
+
                         </div>
+
+
                         <div class="form-group">
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label" style="width: 100%;text-align:left">ACCEPTANCE</label>
                             <label class="col-sm-3 col-md-3 col-lg-2 control-label">THRESHOLD</label>

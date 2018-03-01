@@ -65,14 +65,14 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="prefixes">Prefixes</h1>
-                                        <p>Defining a prefix in a LIMES file demands setting two values:
-                                            The <code>namespace</code> that will be addressed by the prefix's <code>label</code></p>
+                                        <h1 id="prefixes">Prefixes 前缀</h1>
+                                        <p>定义一个prefix需要设置两个值:
+                                            命令空间<code>namespace</code>用<code>label</code>代替。</p>
                                         <pre><code>&lt;PREFIX&gt;
     &lt;NAMESPACE&gt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&lt;/NAMESPACE&gt;
     &lt;LABEL&gt;rdf&lt;/LABEL&gt;
 &lt;/PREFIX&gt;
-</code></pre><p>Here, we set the prefix <code>rdf</code> to correspond to <code>http://www.w3.org/1999/02/22-rdf-syntax-ns\#</code>. A LIMES link specification can contain as many prefixes as required.</p>
+</code></pre><p>以上代码将<code>http://www.w3.org/1999/02/22-rdf-syntax-ns\#</code>缩写为<code>rdf。</code>用户可根据需要配置多个prefix。</p>
 
 
                                     </section>
@@ -100,7 +100,7 @@
                 </div>
 
 
-                <a href="/tutorial/meta" class="navigation navigation-prev " aria-label="Previous page: Metadata">
+                <a href="/tutorial/config" class="navigation navigation-prev " aria-label="Previous page: Metadata">
                     <i class="fa fa-angle-left"></i>
                 </a>
 

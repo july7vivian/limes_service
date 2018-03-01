@@ -66,13 +66,13 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="metric-expression-for-similarity-measurement">Metric Expression for Similarity Measurement</h1>
-                                        <p>One of the core improvements of the newest LIMES kernels is the provision of a highly flexible language for the specification of complex metrics for linking (set by using the <code>METRIC</code> tag as exemplified below).</p>
+                                        <h1 id="metric-expression-for-similarity-measurement">Metric 相似度度量表达式</h1>
+                                        <p>平台提供的核心算法之一</p>
                                         <pre><code>&lt;METRIC&gt;
     trigrams(y.dc:title, x.linkedct:condition_name)
 &lt;/METRIC&gt;
-</code></pre><p>In this example, we use the <code>trigrams</code> metric to compare the <code>dc:title</code> of the instances retrieved from the source data source, with which the variable <code>y</code> is associated, with the <code>linkedct:</code> variable <code>x</code> is associated. While such simple metrics can be used in many cases, complex metrics are necessary in complex linking cases. LIMES includes a formal grammar for specifying complex configurations of arbitrary complexity. For this purpose, two categories of binary operations are supported: Metric operations and boolean operations.</p>
-
+</code></pre><p>以上代码使用<code>trigrams</code>度量函数比较数据源<code>y</code>的<code>dc:title</code>属性与数据源<code>x</code>的<code>linkedct:condition_name</code>属性之间的相似度。</p>
+                                        <p>用户可使用Metric运算与布尔运算配置更复杂的表达式。</p>
 
                                     </section>
 

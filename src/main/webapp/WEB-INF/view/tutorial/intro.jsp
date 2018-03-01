@@ -63,42 +63,13 @@
 
                                         <section class="normal markdown-section">
 
-                                            <h1 id="user-manual-version-100">User Manual (Version 1.0.0)</h1>
-                                            <p>LIMES, the <strong>Li</strong>nk Discovery Framework for <strong>Me</strong>tric <strong>S</strong>paces, is a
-                                                framework for discovering links between entities contained in Linked
-                                                Data sources. LIMES is a hybrid framework that combines the mathematical
-                                                characteristics of metric spaces as well prefix-, suffix- and position
-                                                filtering to compute pessimistic approximations of the similarity of
-                                                instances. These approximations are then used to filter out a large
-                                                amount of those instance pairs that do not suffice the mapping
-                                                conditions. By these means, LIMES can reduce the number of comparisons
-                                                needed during the mapping process by several orders of magnitude and
-                                                complexity without loosing a single link.</p>
-                                            <p><img src="/img/tutorial/uml.png" alt="LIMES workflow" title="fig:"></p>
-                                            <p>The LIMES framework consists of eight main modules of which each can be extended to accommodate new or improved functionality. The central modules of LIMES is the <strong>controller</strong> module, which coordinates the matching process. The matching process is carried out as follows: First, the <strong>controller</strong> calls the <strong>configuration</strong> module, which reads the configuration file and extracts all the information necessary to carry out the comparison of instances, including the URL of the SPARQL-endpoints of source (S) and the target (T) knowledge bases, the restrictions on the instances to map (e.g., their type), the expression of the metric to be used and the threshold to be used. </p>
-                                            <p>Given that the configuration file is valid w.r.t. the LIMES Specification Language (LSL), the <strong>query</strong> module is called. This module uses the configuration for the target and source knowledge bases to retrieve instances and properties from the SPARQL-endpoints of the source and target knowledge bases that adhere to the restrictions specified in the configuration file. The query module writes its output into a file by invoking the <strong>cache</strong> module. Once all instances have been stored in the cache, the controller chooses between performing Link Discovery or Machine Learning. For Link Discovery, LIMES will re-write, plan and execute the Link Specification (LS) included in the configuration file, by calling the <strong>rewriter</strong>, <strong>planner</strong> and <strong>engine</strong> modules resp. The main goal of LD is to identify the set of links (mapping) that satisfy the conditions opposed by the input LS. For Machine Learning, LIMES calls the <strong>machine learning</strong> algorithm included in the configuration file, to identify an appropriate LS to link S and T. Then it proceeds in executing the LS. For both taks, the mapping will be stored in the output file choosen by the user in the configuration file. The results are finally stored into a RDF or a XML file.</p>
-                                            <p>The advantages of LIMES’ approach are manifold. First, it implements
-                                                <strong>highly time-optimized</strong> mappers, making it a complexity class faster
-                                                than other Link Discovery Frameworks. Thus, the larger the problem, the
-                                                faster LIMES is w.r.t. other Link Discovery Frameworks. Secondly, LIMES
-                                                supports a large set of string, numeric, topological and temporal similarity metrics,
-                                                that provide the user with the opportunity to perform various comparisons between resources.
-                                                In addition, <strong>LIMES is guaranteed to lead to exactly the same matching as a brute
-                                                    force approach while at the same time reducing significantly the number
-                                                    of comparisons</strong>. In addition, LIMES supports a <strong>large number of input
-                                                    and output formats</strong> and can be extended very easily to fit new
-                                                algorithms , new datatypes, new preprocessing functions and others thank
-                                                to its modular architecture.</p>
-                                            <p>In general, LIMES can be used to set links between two data sources,
-                                                e.g., a novel data source created by a data publisher and existing data
-                                                source such as DBpedia. This functionality can also be used to
-                                                detect duplicates within one data source for knowledge curation. The
-                                                only requirement to carry out these tasks is a simple XML-based or TURTLE-based
-                                                configuration file. The purpose of this manual is to explicate the LIMES
-                                                Configuration Language (LCL) that underlies these configuration files,
-                                                so as allow users to generate their own configurations. An online
-                                                version of LIMES is available online at
-                                                <a href="http://limes.aksw.org" target="_blank">http://limes.aksw.org</a>.</p>
+                                            <h1 id="user-manual-version-100">简介</h1>
+                                            <p>OpenKG Linkage, 是一个在线实体融合平台，提供基于语言学相似度与机器学习的融合算法。无需注册及登录，用户只需提交邮箱即可收到数据传输需要的SFTP账号，
+                                            并可在相应的SFTP用户目录下上传、修改、删除知识图谱数据。
+                                            </p>
+                                            <p><img src="/img/tutorial/framework.png" alt="framework" title="fig:"></p>
+
+                                            <p></p>
 
 
                                         </section>

@@ -66,16 +66,14 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="acceptance-condition">Acceptance Condition</h1>
-                                        <p>Filling the acceptance condition consists of setting the threshold value to the minimum value that two instances must have in order to satisfy a relation. This can be carried out as exemplified below. </p>
+                                        <h1 id="acceptance-condition">Acceptance Condition 接受条件</h1>
+                                        <p>设置满足融合条件的阈值和结果输出文件地址，例如：</p>
                                         <pre><code>&lt;ACCEPTANCE&gt;
     &lt;THRESHOLD&gt;0.98&lt;/THRESHOLD&gt;
     &lt;FILE&gt;accepted.nt&lt;/FILE&gt;
     &lt;RELATION&gt;owl:sameAs&lt;/RELATION&gt;
 &lt;/ACCEPTANCE&gt;
-</code></pre><p>By using the <code>THRESHOLD</code> tag, the user can set the minimum value that two instances must have in order to satisfy the relation specified in the <code>RELATION</code> tag, i.e., <code>owl:sameAs</code> in our example. Setting the tag <code>&lt;FILE&gt;</code> allows to specify where the links should be written. Currently, LIMES produces output files in the N3 format.</p>
-                                        <p>Future versions of LIMES will allow to write the output to other streams and in other data formats.</p>
-
+</code></pre><p><code>THRESHOLD</code>标签表示满足条件的最小阈值，<code>RELATION</code>标签表示融合关系，例如，<code>owl:sameAs</code>。<code>&lt;FILE&gt;</code>标签表示文件地址，默认格式为N3。</p>
 
                                     </section>
 

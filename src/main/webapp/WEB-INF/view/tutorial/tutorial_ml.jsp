@@ -66,8 +66,8 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="machine-learning">Machine Learning</h1>
-                                        <p>In most cases, finding a good metric expression (i.s. one that achieve high F-Measure) is not a trivial task. Therefore, in LIMES we implemented a number of machine learning algorithm for auto-generation of metric (also called Link Specification). For using a machine learning algorithm in your configuration file use the <code>MLALGORITHM</code> tag instead of the <code>METRIC</code> tag. For example:</p>
+                                        <h1 id="machine-learning">Machine Learning  机器学习</h1>
+                                        <p>大多数情况下，确定一个合适的相似度度量表达式不是一件容易的事。因此，平台提供一种可自动确定表达式的机器学习算法，使用<code>MLALGORITHM</code> 标签替换<code>METRIC</code>即可。例如，</p>
                                         <pre><code>&lt;MLALGORITHM&gt;
     &lt;NAME&gt;wombat simple&lt;/NAME&gt;
     &lt;TYPE&gt;supervised batch&lt;/TYPE&gt;
@@ -77,24 +77,25 @@
         &lt;VALUE&gt;60&lt;/VALUE&gt;
     &lt;/PARAMETER&gt;
 &lt;/MLALGORITHM&gt;
-</code></pre><p>In particular:</p>
+</code></pre>
+                                        <%--<p>In particular:</p>--%>
                                         <ul>
-                                            <li>The the tag <code>NAME</code> contains the name of the machine learning algorithm. Currently, we implemented the folowing algorithms:<ul>
+                                            <li><code>NAME</code>标签可设置为：<ul>
                                                 <li>womabt simple</li>
                                                 <li>wombat complete</li>
                                                 <li>eagle</li>
                                             </ul>
                                             </li>
-                                            <li>The the tag <code>TYPE</code> contains the type of the machine learning algorithm, which could tak one of the values:<ul>
-                                                <li>supervised batch</li>
-                                                <li>supervised active</li>
-                                                <li>unsupervised</li>
+                                            <li><code>TYPE</code>标签可设置为：<ul>
+                                                <li>supervised batch  监督学习</li>
+                                                <%--<li>supervised active</li>--%>
+                                                <li>unsupervised  无监督学习</li>
                                             </ul>
                                             </li>
-                                            <li>The the tag <code>TRAINING</code> contains the full path to the training data file. Note that this tag is not required in case of the supervised active and unsupervised learning algorithms</li>
-                                            <li>The the tag <code>PARAMETER</code> contains the the name (using the sub-tag <code>NAME</code>) and the value (using the sub-tag <code>VALUE</code>) of the used machine learning algorithm parameter. User can use as many <code>PARAMETER</code> tags as it is required. Note that LIMES uses the default values of all unspecified parameters. </li>
+                                            <li><code>TRAINING</code>标签指定训练数据文件的地址，使用无监督学习算法时无需设置。</li>
+                                            <li><code>PARAMETER</code>标签配置算法参数(每一项配置使用子标签<code>NAME</code>和<code>VALUE</code>）。可配置多个<code>PARAMETER</code>参数项。</li>
                                         </ul>
-                                        <p>The following table contains a list of implemented algorithms together with supported implementations and parameters.</p>
+                                        <p>下表展示了实验可配置的参数和相应的取值范围。</p>
                                         <p><style type="text/css">
                                             .tg  {border-collapse:collapse;border-spacing:0;}
                                             .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}

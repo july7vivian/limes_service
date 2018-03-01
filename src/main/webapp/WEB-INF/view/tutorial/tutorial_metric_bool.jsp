@@ -66,15 +66,15 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="boolean-operations">Boolean operations</h1>
-                                        <p>Boolean operations allow to combine and filter the results of metric operations and include <code>AND</code>, <code>OR</code>, <code>DIFF</code>, e.g. as <code>AND(trigrams(x.rdfs:label,y.dc:title)|0.9, euclidean(x.lat|x.long, y.latitude|y.longitude)|0.7)</code>.</p>
-                                        <p>This specification returns all links such that:</p>
+                                        <h1 id="boolean-operations">Boolean operations 布尔操作</h1>
+                                        <p>布尔操作符可以结合并过滤多个子表达式的结果，包括<code>AND</code>, <code>OR</code>, <code>DIFF</code>,例如<code>AND(trigrams(x.rdfs:label,y.dc:title)|0.9, euclidean(x.lat|x.long, y.latitude|y.longitude)|0.7)</code>。</p>
+                                        <p>该表达式返回满足以下条件的融合结果：</p>
                                         <ol>
-                                            <li>the trigram similarity of <code>x</code>'s <code>rdfs:label</code> and <code>y</code>'s <code>dc:title</code> is greater or equal to 0.9 and</li>
-                                            <li>the 2-dimension euclidean distance of <code>x</code>'s <code>lat</code> and <code>long</code> mit y's <code>latitude</code> and <code>longitude</code> is greater or equal to <code>0.7</code>.</li>
+                                            <li>数据源<code>x</code>的<code>rdfs:label</code>属性值和数据源<code>y</code>的<code>dc:title</code>的trigram相似性大于等于0.9。</li>
+                                            <li>数据源<code>x</code>的 <code>lat</code>、<code>long</code>属性值和数据源y的 <code>latitude</code>、<code>longitude</code>属性值的二维欧几里得相似性大于等于<code>0.7</code>。</li>
                                         </ol>
-                                        <p>We call <code>trigrams(x.rdfs:label,y.dc:title)|0.9</code> the left child of the speficiation and <code>euclidean(x.lat|x.long, y.latitude|y.longitude)|0.7</code>the right child of the specification. Both children specifications are simple specifications and combined with a boolean operator, they create a complex specification.
-                                            LIMES gives the user the opportunity to combine <strong>exactly two</strong> complex or simple spefications to create a new complex specification. Note that each child specification must be accompanied by its own threshold. </p>
+                                        <p><code>trigrams(x.rdfs:label,y.dc:title)|0.9</code>称作左子表达式，<code>euclidean(x.lat|x.long, y.latitude|y.longitude)|0.7</code>为右子表达式。
+                                            两者通过布尔操作符组成复合表达式。每个操作符有且仅有2个子表达式。子表达式必须包含阈值。</p>
 
 
                                     </section>

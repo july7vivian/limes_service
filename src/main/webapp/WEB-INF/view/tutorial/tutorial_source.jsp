@@ -65,8 +65,8 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="data-sources">Data Sources</h1>
-                                        <p>LIMES computes links between items contained in two Linked Data sources dubbed source and target. Both source and target need to be configured using the same tags. An example of a configuration for both data sources is shown below.</p>
+                                        <h1 id="data-sources">Data Sources 数据源</h1>
+                                        <p>平台提供算法，对两个知识图谱的实体进项融合。源数据集(SOURCE)和目标数据集(TARGET)采用相同的配置格式，示例如下：</p>
                                         <pre><code>&lt;SOURCE&gt;
     &lt;ID&gt;mesh&lt;/ID&gt;
     &lt;ENDPOINT&gt;http://mesh.bio2rdf.org/sparql&lt;/ENDPOINT&gt;
@@ -84,36 +84,31 @@
     &lt;RESTRICTION&gt;?x rdf:type linkedct:condition&lt;/RESTRICTION&gt;
     &lt;PROPERTY&gt;linkedct:condition_name&lt;/PROPERTY&gt;
 &lt;/TARGET&gt;
-</code></pre><p>Six properties need to be set. </p>
+</code></pre><p>一共需要配置5个选项：</p>
                                         <ul>
-                                            <li>Each data source must be given an ID via the tag <code>ID</code>.</li>
-                                            <li>The endpoint of the data source needs to be explicated via the <code>ENDPOINT</code> tag. <ul>
-                                                <li>If the data is to be queried from a SPARQL end point, the <code>ENDPOINT</code> tag must be set to the corresponding SPARQL endpoint URI.</li>
-                                                <li>In case the data is stored in a local file (CSV, N3, TURTLE, etc.), <code>ENDPOINT</code> tag must be set to the absolute path of the file containing the data.</li>
-                                            </ul>
-                                            </li>
-                                            <li>The <code>VAR</code> tag describes the variable associated with the aformentioned endpoint. This variable is also used later, when specifying the metric used to link the entities retrieved from the source and target endpoints.</li>
-                                            <li>The fourth property is set via the <code>PAGESIZE</code> tag. This property must be set to the maximal number of triples returned by the SPARQL endpoint. For example, the <a href="http://dbpedia.org/sparql" target="_blank">DBpedia endpoint</a> returns a maximum of 1000 triples for each query. LIMES' SPARQL module can still retrieve all relevant instances for the mapping even the value is set. If the SPARQL endpoint does not limit the number of triples it returns or if the input is a file, the value of <code>PAGESIZE</code> should be set to -1. </li>
-                                            <li>The restrictions on the queried data can be set via the <code>RESTRICTION</code> tag. This tag allows to constrain the entries that are retrieved the LIMES' query module. In this particular example, we only instances of MESH concepts. </li>
-                                            <li>The <code>PROPERTY</code> tag allows to specify the properties that will be used during the linking. It is important to note that the property tag can also be used to specify the preprocessing on the input data. For example, setting <code>rdfs:label AS nolang</code>, one can ensure that the language tags get removed from each <code>rdfs:label</code> before it is written in the cache. Pre-processing functions can be piped into one another by using <code>-&gt;</code>. For example, <code>rdfs:label AS nolang-&gt;lowercase</code> will compute <code>lowercase(nolang(rdfs:label))</code>.</li>
+                                            <li>每个数据源需要通过<code>ID</code>标签指定一个名称。</li>
+                                            <li><code>ENDPOINT</code>标签指定知识图谱文件的地址。</li>
+                                            <li><code>VAR</code>标签表示与<code>ENDPOINT</code>相关联的变量，该变量用于从知识图谱中检索数据。</li>
+                                            <li>约束条件通过<code>RESTRICTION</code>标签设置，该项表示检索三元组的限制条件。例如，上面的SOURCE项抽取的实体必须是MESH concept的实例。 </li>
+                                            <li><code>PROPERTY</code>标签用于数据预处理。例如，<code>rdfs:label AS nolang</code>可以确保在融合计算执行之前除去<code>rdfs:label</code>属性的语言标记。预处理函数可以通过<code>-&gt;</code>符号串联使用。例如，<code>rdfs:label AS nolang-&gt;lowercase</code>等价于<code>lowercase(nolang(rdfs:label))</code>。</li>
                                         </ul>
-                                        <h2 id="pre-processing-functions">Pre-processing Functions</h2>
-                                        <p>Currently, LIMES supports the following set of pre-processing functions:</p>
+                                        <h2 id="pre-processing-functions">Pre-processing Functions 预处理函数</h2>
+                                        <p>目前, 平台支持以下预处理函数:</p>
                                         <ul>
-                                            <li><code>nolang</code> for removing language tags</li>
-                                            <li><code>lowercase</code> for converting the input string into lower case</li>
-                                            <li><code>uppercase</code> for converting the input string into upper case </li>
-                                            <li><code>number</code> for ensuring that only the numeric characters, "." and "," are contained in the input string</li>
-                                            <li><code>replace(String a,String b)</code> for replacing each occurrence of <code>a</code> with <code>b</code></li>
-                                            <li><code>regexreplace(String x,String b)</code> for replacing each occurrence the regular excepression <code>x</code> with <code>b</code></li>
-                                            <li><code>cleaniri</code> for removing all the prefixes from IRIs</li>
-                                            <li><code>celsius</code> for converting Fahrenheit to Celsius</li>
-                                            <li><code>fahrenheit</code> for converting Celsius to Fahrenheit</li>
-                                            <li><code>removebraces</code> for removing the braces</li>
-                                            <li><code>regularAlphabet</code> for removing nun-alphanumeric characters</li>
-                                            <li><code>uriasstring</code> returns the last part of an URI as a String. Additional parsing <code>_</code> as space</li>
+                                            <li><code>nolang</code>表示去除语言标记。</li>
+                                            <li><code>lowercase</code>转换为小写字母。</li>
+                                            <li><code>uppercase</code>转换为大写字母。</li>
+                                            <li><code>number</code>只保留数字、 "." 和 ","参与运算。</li>
+                                            <li><code>replace(String a,String b)</code>用字符串<code>b</code>代替<code>a</code>。</li>
+                                            <li><code>regexreplace(String x,String b)</code>用字符串<code>b</code>代替符合正则式<code>x</code>的字符串。</li>
+                                            <li><code>cleaniri</code>移除IRIs中的所有前缀。</li>
+                                            <li><code>celsius</code>将华氏温度转换为摄氏温度。</li>
+                                            <li><code>fahrenheit</code>将摄氏温度转换为华氏温度。</li>
+                                            <li><code>removebraces</code>移除括号。</li>
+                                            <li><code>regularAlphabet</code>移除非字母的字符。</li>
+                                            <li><code>uriasstring</code>返回URI的最后一部分以字符串的形式返回，并将<code>_</code>替换为空格。</li>
                                         </ul>
-                                        <p>Sometimes, generating the right link specification might either require merging property values (for example, the <code>dc:title</code> and <code>foaf:name</code> of MESH concepts) or splitting property values (for example, comparing the label and <code>foaf:homepage</code> of source instances and the <code>foaf:homepage</code> of target instances as well as <code>foaf:homepage AS cleaniri</code> of the target instances with the <code>rdfs:label</code> of target instances. To enable this, LIMES provides the <code>RENAME</code> operator which simply store either the values of a property or the results of a preprocessing into a different property field. For example, <code>foaf:homepage AS cleaniri RENAME label</code> would stored the homepage of a object without all the prefixes in the name property. The user could then access this value during the specification of the similarity measure for comparing sources and target instances. Note that the same property value can be used several times. Thus, the following specification fragment is valid and leads to the the <code>dc:title</code> and <code>foaf:name</code> of individuals)  of MESH concepts being first cast down to the lowercase and then merged to a single property.</p>
+                                        <p>有时，生成一个融合表达式需要合并多个属性值，或者分割属性值。<code>RENAME</code>操作符可以简单地将预处理后的属性值重命名为一个新的字段，举例如下：</p>
                                         <pre><code>&lt;SOURCE&gt;
     &lt;ID&gt;mesh&lt;/ID&gt;
     &lt;ENDPOINT&gt;http://mesh.bio2rdf.org/sparql&lt;/ENDPOINT&gt;
@@ -124,7 +119,7 @@
     &lt;PROPERTY&gt;foaf:name AS lowercase RENAME name&lt;/PROPERTY&gt;
     &lt;TYPE&gt;sparql&lt;/TYPE&gt;
 &lt;/SOURCE&gt;
-</code></pre><p>In addition, the following allows splitting the values of <code>foaf:homepage</code> into the property values <code>name</code> and <code>homepage</code>.</p>
+</code></pre><p>如下所示，, <code>foaf:homepage</code>属性被分割为<code>name</code>和<code>homepage</code>。</p>
                                         <pre><code>&lt;SOURCE&gt;
     &lt;ID&gt;mesh&lt;/ID&gt;
     &lt;ENDPOINT&gt;http://mesh.bio2rdf.org/sparql&lt;/ENDPOINT&gt;
@@ -135,16 +130,13 @@
     &lt;PROPERTY&gt;foaf:homepage AS cleaniri-&gt;lowercase RENAME name&lt;/PROPERTY&gt;
     &lt;TYPE&gt;sparql&lt;/TYPE&gt;
 &lt;/SOURCE&gt;
-</code></pre><p>In addition, a source type can be set via <code>TYPE</code>. The default type is set to <code>SPARQL</code> (for a SPARQL endpoint) but LIMES also supports reading files directly from the hard-drive. The supported data formats are</p>
+</code></pre><p>最后，数据源的格式可由<code>TYPE</code>设置，支持以下格式：</p>
                                         <ul>
-                                            <li><code>CSV</code>: Character-separated file can be loaded directly into LIMES. Note that the separation character is set to <code>TAB</code> as a default. The user can alter this setting programmatically. </li>
-                                            <li><code>N3</code> (which also reads <code>NT</code> files) reads files in the <code>N3</code> language.</li>
-                                            <li><code>N-TRIPLE</code> reads files in W3C's core <a href="http://www.w3.org/TR/rdf-testcases/\#ntriples" target="_blank">N-Triples format</a></li>
-                                            <li><code>TURTLE</code> allows reading files in the <code>Turtle</code> <a href="http://www.w3.org/TR/turtle/" target="_blank">syntax</a>.</li>
+                                            <li><code>CSV</code>:Character-separated 文件，默认分隔符为<code>TAB</code>。 </li>
+                                            <li><code>N3</code> :同<code>NT</code> 文件。</li>
+                                            <li><code>N-TRIPLE</code> 读取<a href="http://www.w3.org/TR/rdf-testcases/\#ntriples" target="_blank">N-Triples 格式</a>文件。</li>
+                                            <li><code>TURTLE</code>读取<code>Turtle</code> <a href="http://www.w3.org/TR/turtle/" target="_blank">语法</a>文件。</li>
                                         </ul>
-                                        <p>Moreover, if you want to download data from a SPARQL endpoint, there is no need to set the <code>&lt;TYPE&gt;</code> tag.
-                                            Instead, if you want to read the source (or target) data from a file, you should fill <code>&lt;ENDPOINT&gt;</code> tag with the absolute path of the input file, e.g. <code>&lt;ENDPOINT&gt;C:/Files/dbpedia.nt&lt;/ENDPOINT&gt;</code>, and you should also set the <code>&lt;TYPE&gt;</code> tag  with the type of the input data, for example <code>&lt;TYPE&gt;NT&lt;/TYPE&gt;</code>.</p>
-
 
                                     </section>
 

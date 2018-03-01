@@ -76,15 +76,22 @@ public class IndexController {
     @RequestMapping(value = "/submitConfig")
     public ModelAndView submitConfig(Config config){  //data bind
 
-        System.out.println("config***");
         System.out.println(config.toString());
         String jobId = configService.getIDFromConfig(config);
         ModelAndView mav = new ModelAndView();
         mav.addObject("jobId", jobId);
         mav.setViewName("resultone");
+        return mav;
+    }
 
+    @RequestMapping(value = "/submitConfig2")
+    public ModelAndView submitConfig2(mlConfig mlconfig){  //data bind
 
-
+        System.out.println(mlconfig.toString());
+        String jobId = configService.getIDFromConfig(mlconfig);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("jobId", jobId);
+        mav.setViewName("resultone");
         return mav;
     }
 

@@ -66,15 +66,15 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="review-condition">Review Condition</h1>
-                                        <p>Setting the condition upon which links must be reviewed manually is very similar to setting the acceptance condition as shown below.</p>
+                                        <h1 id="review-condition">Review Condition 复审条件</h1>
+                                        <p>设置满足人工复审条件的阈值和结果输出文件地址，与接受条件类似，例如：</p>
                                         <pre><code>&lt;REVIEW&gt;
     &lt;THRESHOLD&gt;0.95&lt;/THRESHOLD&gt;
     &lt;FILE&gt;reviewme.nt&lt;/FILE&gt;
     &lt;RELATION&gt;owl:sameAs&lt;/RELATION&gt;
 &lt;/REVIEW&gt;
-</code></pre><p>All instances that have a similarity between the threshold set in <code>REVIEW</code> (0.95 in our example) and the threshold set in <code>ACCEPTANCE</code> (0.98 in our example) will be written in the review file and linked via the relation set in <code>REVIEW</code>. </p>
-                                        <p>The LIMES configuration file should be concluded with <code>&lt;/LIMES&gt;</code></p>
+</code></pre><p>实体融合相似度介于<code>REVIEW</code>阈值(本例中为0.95)与<code>ACCEPTANCE</code>阈值 (本例中为0.98)之间的实体对将输出至<code>REVIEW</code>的结果文件中。</p>
+
 
 
                                     </section>

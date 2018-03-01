@@ -60,8 +60,8 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="components-of-a-limes-xml-configuration-file">Components of a LIMES XML Configuration File</h1>
-                                        <p>A LIMES configuration file consists of ten parts, of which some are optional.</p>
+                                        <h1 id="components-of-a-limes-xml-configuration-file">在线参数配置</h1>
+                                        <p>一个完整的配置主要包括8个部分，下面将详细介绍。</p>
 
 
                                     </section>
@@ -93,7 +93,7 @@
                 </a>
 
 
-                <a href="/tutorial/meta" class="navigation navigation-next " aria-label="Next page: Metadata" style="margin-right: 0px;">
+                <a href="/tutorial/prefix" class="navigation navigation-next " aria-label="Next page: Metadata" style="margin-right: 0px;">
                     <i class="fa fa-angle-right"></i>
                 </a>
 
