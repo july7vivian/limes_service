@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: dluo
+  Date: 18/3/1
+  Time: 下午7:49
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -48,7 +55,7 @@
             <%--<a href="#" title="Go to Home" class="current">Home</a>--%>
             <a href="#" class="current">使用指南</a>
             <a href="#" class="current">配置文件</a>
-            <a href="#" class="current">Review Condition</a>
+            <a href="#" class="current">Output Format</a>
         </div>
 
 
@@ -66,16 +73,10 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="review-condition">Review Condition 复审条件</h1>
-                                        <p>设置满足人工复审条件的阈值和结果输出文件地址，与接受条件类似，例如：</p>
-                                        <pre><code>&lt;REVIEW&gt;
-    &lt;THRESHOLD&gt;0.95&lt;/THRESHOLD&gt;
-    &lt;FILE&gt;reviewme.nt&lt;/FILE&gt;
-    &lt;RELATION&gt;owl:sameAs&lt;/RELATION&gt;
-&lt;/REVIEW&gt;
-</code></pre><p>实体融合相似度介于<code>REVIEW</code>阈值(本例中为0.95)与<code>ACCEPTANCE</code>阈值 (本例中为0.98)之间的实体对将输出至<code>REVIEW</code>的结果文件中。</p>
-
-
+                                        <h1 id="output-format">Output Format 输出格式</h1>
+                                        <p>用户可选择<code>TAB</code>和<code>N3</code>输出格式。</p>
+                                        <pre><code>&lt;OUTPUT&gt;N3&lt;/OUTPUT&gt;
+</code></pre>
 
                                     </section>
 
@@ -102,14 +103,14 @@
                 </div>
 
 
-                <a href="/tutorial/accept" class="navigation navigation-prev " aria-label="Previous page: Congifuration">
+                <a href="/tutorial/review" class="navigation navigation-prev " aria-label="Previous page: Congifuration">
                     <i class="fa fa-angle-left"></i>
                 </a>
 
 
-                <a href="/tutorial/output" class="navigation navigation-next " aria-label="Next page: Prefix" style="margin-right: 0px;">
-                    <i class="fa fa-angle-right"></i>
-                </a>
+                <%--<a href="/tutorial/example" class="navigation navigation-next " aria-label="Next page: Prefix" style="margin-right: 0px;">--%>
+                    <%--<i class="fa fa-angle-right"></i>--%>
+                <%--</a>--%>
 
 
             </div>

@@ -48,7 +48,7 @@
             <%--<a href="#" title="Go to Home" class="current">Home</a>--%>
             <a href="#" class="current">使用指南</a>
             <a href="#" class="current">配置文件</a>
-            <a href="#" class="current">Examples</a>
+            <a href="#" class="current">配置示例</a>
         </div>
 
 
@@ -66,11 +66,9 @@
 
                                     <section class="normal markdown-section">
 
-                                        <h1 id="configuration-file-examples">Configuration File Examples</h1>
-                                        <p>The following shows the whole configuration file for LIMES explicated in the sections above.</p>
-                                        <pre><code class="lang-xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> standalone=<span class="hljs-string">"no"</span><span class="hljs-meta">?&gt;</span></span>
-<span class="hljs-meta">&lt;!DOCTYPE LIMES SYSTEM "limes.dtd"&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">LIMES</span>&gt;</span>
+                                        <h1 id="configuration-file-examples">配置示例</h1>
+                                        <p>下面用代码的形式给出使用相似度度量算法的完整的配置，用户只需在网页配置页面填入对应的值即可。</p>
+                                        <pre><code class="lang-xml">
     <span class="hljs-tag">&lt;<span class="hljs-name">PREFIX</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">NAMESPACE</span>&gt;</span>http://geovocab.org/geometry#<span class="hljs-tag">&lt;/<span class="hljs-name">NAMESPACE</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">LABEL</span>&gt;</span>geom<span class="hljs-tag">&lt;/<span class="hljs-name">LABEL</span>&gt;</span>
@@ -110,81 +108,11 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">FILE</span>&gt;</span>lgd_relaybox_near.nt<span class="hljs-tag">&lt;/<span class="hljs-name">FILE</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">RELATION</span>&gt;</span>lgdo:near<span class="hljs-tag">&lt;/<span class="hljs-name">RELATION</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">REVIEW</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">EXECUTION</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">REWRITER</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">REWRITER</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">PLANNER</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">PLANNER</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">ENGINE</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">ENGINE</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">EXECUTION</span>&gt;</span>
-
     <span class="hljs-tag">&lt;<span class="hljs-name">OUTPUT</span>&gt;</span>TAB<span class="hljs-tag">&lt;/<span class="hljs-name">OUTPUT</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">LIMES</span>&gt;</span>
 </code></pre>
-                                        <p>LIMES can be also configured using a RDF configuration file, the next
-                                            listing represent the same LIMES configuration used in the previous XML
-                                            file.</p>
-                                        <pre><code class="lang-turtle">@prefix geos:    &lt;http://www.opengis.net/ont/geosparql#&gt; .
-@prefix lgdo:    &lt;http://linkedgeodata.org/ontology/&gt; .
-@prefix rdfs:    &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
-@prefix geom:    &lt;http://geovocab.org/geometry#&gt; .
-@prefix limes:   &lt;http://limes.sf.net/ontology/&gt; .
 
-limes:linkedgeodataTOlinkedgeodataTarget
-      a       limes:TargetDataset ;
-      rdfs:label "linkedgeodata" ;
-      limes:endPoint "http://linkedgeodata.org/sparql" ;
-      limes:pageSize "2000" ;
-      limes:property "geom:geometry/geos:asWKT" ;
-      limes:restriction "?y a lgdo:RelayBox" ;
-      limes:variable "?y" .
-
-limes:linkedgeodataTOlinkedgeodata
-      a       limes:LimesSpecs ;
-      limes:hasExecutionParameters limes:executionParameters ;
-      limes:granularity "2" ;
-      limes:hasAcceptance limes:linkedgeodataTOlinkedgeodataAcceptance ;
-      limes:hasMetric limes:linkedgeodataTOlinkedgeodataMetric ;
-      limes:hasReview limes:linkedgeodataTOlinkedgeodataReview ;
-      limes:hasSource limes:linkedgeodataTOlinkedgeodataSource ;
-      limes:hasTarget limes:linkedgeodataTOlinkedgeodataTarget ;
-      limes:outputFormat "TAB" .
-
-limes:executionParameters
-      a limes:ExecutionParameters ;
-      limes:executionPlanner "default" ;
-      limes:executionRewriter "default" ;
-      limes:executionEngine "default" .
-
-
-limes:linkedgeodataTOlinkedgeodataReview
-      a       limes:Review ;
-      limes:file "lgd_relaybox_near.nt" ;
-      limes:relation "lgdo:near" ;
-      limes:threshold "0.5" .
-
-limes:linkedgeodataTOlinkedgeodataMetric
-      a       limes:Metric ;
-      limes:expression "geo_hausdorff(x.polygon, y.polygon)" .
-
-limes:linkedgeodataTOlinkedgeodataAcceptance
-      a       limes:Acceptance ;
-      limes:file "lgd_relaybox_verynear.nt" ;
-      limes:relation "lgdo:near" ;
-      limes:threshold "0.9" .
-
-limes:linkedgeodataTOlinkedgeodataSource
-      a       limes:SourceDataset ;
-      rdfs:label "linkedgeodata" ;
-      limes:endPoint "http://linkedgeodata.org/sparql" ;
-      limes:pageSize "2000" ;
-      limes:property "geom:geometry/geos:asWKT" ;
-      limes:restriction "?x a lgdo:RelayBox" ;
-      limes:variable "?x" .
-</code></pre>
-                                        <p>The following configuration file uses the machine learning algorithm of the Wombat simple to find the metric expression for the same example:</p>
-                                        <pre><code class="lang-xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> standalone=<span class="hljs-string">"no"</span><span class="hljs-meta">?&gt;</span></span>
-<span class="hljs-meta">&lt;!DOCTYPE LIMES SYSTEM "limes.dtd"&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">LIMES</span>&gt;</span>
+                                        <p>下面的示例为使用机器学习算法的完整的配置：</p>
+                                        <pre><code class="lang-xml">
     <span class="hljs-tag">&lt;<span class="hljs-name">PREFIX</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">NAMESPACE</span>&gt;</span>http://geovocab.org/geometry#<span class="hljs-tag">&lt;/<span class="hljs-name">NAMESPACE</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">LABEL</span>&gt;</span>geom<span class="hljs-tag">&lt;/<span class="hljs-name">LABEL</span>&gt;</span>
@@ -240,73 +168,7 @@ limes:linkedgeodataTOlinkedgeodataSource
         <span class="hljs-tag">&lt;<span class="hljs-name">RELATION</span>&gt;</span>lgdo:near<span class="hljs-tag">&lt;/<span class="hljs-name">RELATION</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">REVIEW</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">EXECUTION</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">REWRITER</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">REWRITER</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">PLANNER</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">PLANNER</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">ENGINE</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">ENGINE</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">EXECUTION</span>&gt;</span>
-
     <span class="hljs-tag">&lt;<span class="hljs-name">OUTPUT</span>&gt;</span>TAB<span class="hljs-tag">&lt;/<span class="hljs-name">OUTPUT</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">LIMES</span>&gt;</span>
-</code></pre>
-                                        <p>Finally, the last XML configuration file in TTL format will look like:</p>
-                                        <pre><code class="lang-turtle">@prefix geos:    &lt;http://www.opengis.net/ont/geosparql#&gt; .
-@prefix lgdo:    &lt;http://linkedgeodata.org/ontology/&gt; .
-@prefix rdfs:    &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
-@prefix geom:    &lt;http://geovocab.org/geometry#&gt; .
-@prefix limes:   &lt;http://limes.sf.net/ontology/&gt; .
-
-limes:linkedgeodataTOlinkedgeodataTarget
-      a       limes:TargetDataset ;
-      rdfs:label "linkedgeodata" ;
-      limes:endPoint "http://linkedgeodata.org/sparql" ;
-      limes:pageSize "2000" ;
-      limes:property "geom:geometry/geos:asWKT" ;
-      limes:restriction "?y a lgdo:RelayBox" ;
-      limes:variable "?y" .
-
-limes:linkedgeodataTOlinkedgeodata
-      a       limes:LimesSpecs ;
-      limes:hasExecutionParameters limes:executionParameters ;
-      limes:granularity "2" ;
-      limes:hasAcceptance limes:linkedgeodataTOlinkedgeodataAcceptance ;
-      limes:hasMetric limes:linkedgeodataTOlinkedgeodataMetric ;
-      limes:hasReview limes:linkedgeodataTOlinkedgeodataReview ;
-      limes:hasSource limes:linkedgeodataTOlinkedgeodataSource ;
-      limes:hasTarget limes:linkedgeodataTOlinkedgeodataTarget ;
-      limes:outputFormat "TAB" .
-
-limes:executionParameters
-      a limes:ExecutionParameters ;
-      limes:executionPlanner "default" ;
-      limes:executionRewriter "default" ;
-      limes:executionEngine "default" .
-
-
-limes:linkedgeodataTOlinkedgeodataReview
-      a       limes:Review ;
-      limes:file "lgd_relaybox_near.nt" ;
-      limes:relation "lgdo:near" ;
-      limes:threshold "0.5" .
-
-limes:linkedgeodataTOlinkedgeodataMetric
-      a       limes:Metric ;
-      limes:expression "geo_hausdorff(x.polygon, y.polygon)" .
-
-limes:linkedgeodataTOlinkedgeodataAcceptance
-      a       limes:Acceptance ;
-      limes:file "lgd_relaybox_verynear.nt" ;
-      limes:relation "lgdo:near" ;
-      limes:threshold "0.9" .
-
-limes:linkedgeodataTOlinkedgeodataSource
-      a       limes:SourceDataset ;
-      rdfs:label "linkedgeodata" ;
-      limes:endPoint "http://linkedgeodata.org/sparql" ;
-      limes:pageSize "2000" ;
-      limes:property "geom:geometry/geos:asWKT" ;
-      limes:restriction "?x a lgdo:RelayBox" ;
-      limes:variable "?x" .
 </code></pre>
 
 

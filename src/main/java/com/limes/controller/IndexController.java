@@ -214,6 +214,13 @@ public class IndexController {
         return mav;
     }
 
+    @RequestMapping(value = "/tutorial/output")
+    public ModelAndView tutorialMetricOutput(HttpServletRequest request){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("tutorial/tutorial_output");
+        return mav;
+    }
+
 
     @RequestMapping(value = "/tutorial/example")
     public ModelAndView tutorialMetricExample(HttpServletRequest request){
